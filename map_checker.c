@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:11:25 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/27 13:36:27 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/27 14:51:12 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,51 @@
 
 bool	check_in(char *str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!str || ft_strlen(str) < 4)
-		return(false);
-	i = ft_strlen(str) - 4;
-	if (!ft_strncmp(str+i,".cub",4))
 	{
-		printf("worked!!!\n");
-		return (true);
+		write(2, "invalid ifile : (.cub)\n", 23);
+		return (false);
 	}
-	return(false);
+	i = ft_strlen(str) - 4;
+	if (!ft_strncmp(str + i, ".cub", 4))
+		return (true);
+	write(2, "invalid ifile : (.cub)\n", 23);
+	return (false);
+}
+
+bool	read_map(char *file, t_data *data)
+{
+	int		i;
+	int		fd;
+	char	*line;
+
+	if (!check_in(file))
+		return (FAILED);
+	fd = ft_open(file);
+	data->map = (char **)malloc(sizeof(char *));
+	if (!data->map || !fd)
+		return (FAILED);
+	line = get_next_line(fd);
+	i = 0;
+	data->map[i] = line;
+	while (line)
+	{
+		i++;
+		line = get_next_line(fd);
+		data->map = ft_realoc(data->map, i + 1);
+		data->map[i] = line;
+	}
+	return (SUCCESS);
+}
+
+bool	check_map(char *str, t_data *data)
+{
+	if (!read_map(str, data))
+	{
+		
+	}
+	return (false);
 }

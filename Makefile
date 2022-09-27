@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/09/27 13:33:41 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/09/27 14:46:54 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME	 	=	cub3d
 CC			=	cc
 FLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
-SRCS	 	=	utils.c map_checker.c cub3d.c
+SRCS	 	=	GNL/get_next_line.c		\
+				GNL/get_next_line_utils.c utils.c map_checker.c cub3d.c 
 OBJS		=	$(SRCS:.c=.o)
-HEADER		=	cub3d.h
+HEADER		=	cub3d.h ./GNL/get_next_line.h
 
 
 all			:	$(NAME)
