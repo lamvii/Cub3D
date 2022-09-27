@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:11:25 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/27 17:23:32 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/27 19:00:10 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,31 @@ bool	read_map(char *file, t_data *data)
 	char	*line;
 
 	if (!check_in(file))
-		return (FAILED);
+		return (false);
 	fd = ft_open(file);
 	data->o_map = (char **)malloc(sizeof(char *));
 	if (!data->o_map || !fd)
-		return (FAILED);
+		return (false);
 	line = get_next_line(fd);
 	i = 0;
 	data->o_map[i] = line;
 	while (line)
 	{	
 		line = get_next_line(fd);
-		if (line[0] == '\0')
-			continue ;
+		if (line && i < 6 && line[0] == '\n')
+			continue;
 		i++;
 		data->o_map = ft_realoc(data->o_map, i + 1);
 		data->o_map[i] = line;
 	}
-	return (SUCCESS);
+	return (true);
 }
 
 bool	check_map(char *str, t_data *data)
 {
-	if (read_map(str, data))
-	{
-		check_assets(data);
-	}
-	return (false);
+	if (!read_map(str, data))
+		return (false);
+	if(!check_assets(data))
+		return(false);
+	return (true);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/27 17:22:30 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/27 18:49:11 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@
 
 # include "./GNL/get_next_line.h"
 
-# define SUCCESS 0
-# define FAILED 1
-# define NO 2
-# define SO 3
-# define WE 4
-# define EA 5
-# define F 6
-# define C 7
+# define NO 1
+# define SO 2
+# define WE 3
+# define EA 4
+# define F 5
+# define C 6
 
 typedef struct s_data
 {
@@ -41,8 +39,8 @@ typedef struct s_data
 	char	*so;
 	char	*we;
 	char	*ea;
-	char	*f;
-	char	*c;
+	int		f[3];
+	int		c[3];
 }				t_data;
 
 int		ft_strncmp(char *s1, char *s2, int n);
