@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/27 18:49:11 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:19:57 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,17 @@ typedef struct s_data
 	int		c[3];
 }				t_data;
 
+//		utils.c
+void	init_data(t_data *data);
 int		ft_strncmp(char *s1, char *s2, int n);
-bool	check_map(char *str, t_data *data);
 int		ft_open(char *file);
+int		ft_isspace(char c);
+
+//		utlis1.c
 char	**ft_realoc(char **tab, int size);
 bool	check_assets(t_data *data);
+
+//		map_checker.c
+bool	check_map(char *str, t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:26:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/27 18:26:51 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:19:43 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ int	ft_strncmp(char *s1, char *s2, int n)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_isspace(char c)
+{
+	if (c == '\t' || c == '\n' || c == '\v'
+		|| '\f' || c == '\r' || c == ' ')
+		return (true);
+	return (false);
 }
 
 int	ft_open(char *file)
@@ -59,3 +67,20 @@ char	**ft_realoc(char **tab, int size)
 	return (n_tab);
 }
 
+void	init_data(t_data *data)
+{
+	int	i;
+
+	data->o_map = NULL;
+	data->map = NULL;
+	data->no = NULL;
+	data->so = NULL;
+	data->we = NULL;
+	data->ea = NULL;
+	i = 0;
+	while (i < 3)
+	{
+		data->f[i] = -1;
+		data->c[i] = -1;
+	}
+}

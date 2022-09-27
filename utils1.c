@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/27 18:27:13 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/27 20:23:53 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,33 @@ int	ft_type(char *str)
 	return (0);
 }
 
+char	*pass_w_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (NULL);
+	while (ft_ispace(str[i]))
+		i++;
+	return (str + i);
+}
+
 void	get_asset(t_data *data, int type, int index)
 {
 	if (type == NO)
-		data->no = data->o_map[index];
+		data->no = pass_w_space(data->o_map[index] + 3);
 	if (type == SO)
-		data->so = data->o_map[index];
+		data->so = pass_w_space(data->o_map[index] + 3);
 	if (type == WE)
-		data->we = data->o_map[index];
+		data->we = pass_w_space(data->o_map[index] + 3);
 	if (type == EA)
-		data->ea = data->o_map[index];
-	if (type == F)
-		data->f = data->o_map[index];
-	if (type == C)
-		data->c = data->o_map[index];
+		data->ea = pass_w_space(data->o_map[index] + 3);
+	//elem =split by ',' --> f[i] =atoi(elems) kmelhom llah irdi3lik
+	// if (type == F)
+	// 	data->f = data->o_map[index];
+	// if (type == C)
+	// 	data->c = data->o_map[index];
 }
 
 int	map_length(char **map)
@@ -57,17 +70,12 @@ int	map_length(char **map)
 	return (i);
 }
 
-bool	check_assets(t_data *data)
+bool	parse_assets(t_data *data)
 {
 	int	i;
 	int	type;
 
 	i = 0;
-	if (map_length(data->o_map) < 9)
-	{
-		printf("non valid map\n");
-		return (false);
-	}
 	while (i < 6)
 	{
 		type = ft_type(data->o_map[i]);
@@ -79,7 +87,23 @@ bool	check_assets(t_data *data)
 		get_asset(data, type, i);
 		i++;
 	}
-	if (!data->no || !data->so || !data->we || !data->ea || !data->f || !data->c )
+	return (true);
+}
+
+bool	check_assets(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (map_length(data->o_map) < 9)
+	{
+		printf("non valid map\n");
+		return (false);
+	}
+	if (!parse_assets(data))
+		return (false);
+	if (!data->no || !data->so || !data->we || !data->ea
+		|| !data->f || !data->c)
 	{
 		printf("assests not valid\n");
 		return (false);
