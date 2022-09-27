@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:26:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/27 14:52:34 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:02:13 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int	ft_strlen(char *c)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (c == NULL)
-// 		return (0);
-// 	while (c[i] != '\0')
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
 
 int	ft_strncmp(char *s1, char *s2, int n)
 {
@@ -71,4 +57,34 @@ char	**ft_realoc(char **tab, int size)
 	}
 	free(tab);
 	return (n_tab);
+}
+
+int		ft_type(char *str)
+{
+	if (ft_strncmp(str,"NO ",3))
+		return (NO);
+	if (ft_strncmp(str,"SO ",3))
+		return (SO);
+	if (ft_strncmp(str,"WE ",3))
+		return (WE);
+	if (ft_strncmp(str,"EA ",3))
+		return (EA);
+	if (ft_strncmp(str,"F ",2))
+		return (F);
+	if (ft_strncmp(str,"C ",2))
+		return (C);
+	return (0);
+}
+
+bool	check_assest(t_data *data)
+{
+	int i;
+
+	i = 0;
+	if (data->o_map[i])
+	while (i < 6)
+	{
+			
+	}
+	
 }

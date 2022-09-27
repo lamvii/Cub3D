@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/27 14:45:11 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:02:36 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,25 @@
 
 # define SUCCESS 0
 # define FAILED 1
+# define NO 2
+# define SO 3
+# define WE 4
+# define EA 5
+# define F 6
+# define C 7
 
 typedef struct s_data
 {
+	char	**o_map;
 	char	**map;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
 }				t_data;
+
 
 // int		ft_strlen(char *c);
 int		ft_strncmp(char *s1, char *s2, int n);
