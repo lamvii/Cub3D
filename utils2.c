@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:47:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/28 16:04:39 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:38:20 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	check_range(int n)
 {
 	if (n < 0 || n > 255)
 		return (false);
-	return (true);	
+	return (true);
 }
 
 bool	check_lenght(int *tab)
@@ -30,4 +30,3 @@ bool	check_lenght(int *tab)
 		return (false);
 	return (true);
 }
-

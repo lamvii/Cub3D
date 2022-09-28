@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/28 15:40:05 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:37:18 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,43 +41,108 @@ char	*pass_w_space(char *str)
 	return (str + i);
 }
 
-void	get_asset(t_data *data, int type, int index)
+bool	get_texture(t_data *data, int type, int index)
+{
+	if (type == NO)
+	{
+		data->no = pass_w_space(data->o_map[index] + 3);
+		if (!check_xpm(data->no))
+			return (false);
+	}
+	if (type == SO)
+	{
+		data->so = pass_w_space(data->o_map[index] + 3);
+		if (!check_xpm(data->so))
+			return (false);
+	}
+	if (type == WE)
+	{
+		data->we = pass_w_space(data->o_map[index] + 3);
+		if (!check_xpm(data->we))
+			return (false);
+	}
+	if (type == EA)
+	{
+		data->ea = pass_w_space(data->o_map[index] + 3);
+		if (!check_xpm(data->ea))
+			return (false);
+	}
+	return (true);
+}
+
+bool	ft_isdigit(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (false);
+	while (str[i])
+	{
+		if (str[i] > '9' || str[i] < '0')
+			return (false);
+	}
+	return (true);
+}
+
+void	free__tab(char ***tab)
+{
+	char	**t;
+	int		i;
+
+	t = *tab;
+	i = 0;
+	if (!t)
+		return ;
+	while (t[i])
+		free(t[i]);
+	free(t);
+}
+
+bool	parse_color(t_data *data, int type, int index, char flag)
 {
 	char	**tmp;
 	int		i;
 
 	i = 0;
-	if (type == NO)
-		data->no = pass_w_space(data->o_map[index] + 3);
-	if (type == SO)
-		data->so = pass_w_space(data->o_map[index] + 3);
-	if (type == WE)
-		data->we = pass_w_space(data->o_map[index] + 3);
-	if (type == EA)
-		data->ea = pass_w_space(data->o_map[index] + 3);
-	if ( type == F)
+	tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
+	if (tab__length(tmp) < 4)
+		return (false);
+	while (i < 3)
 	{
-		tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
-		while(i < 3)
-		{
-			printf("%s\n",tmp[i]);
+		// printf("%s\n",tmp[i]);
+		if (!ft_isdigit(tmp[i]))
+			return (false);
+		if (flag == 'f')
 			data->f[i] = ft_atoi(tmp[i]);
-			i++;
+		else
+			data->c[i] = ft_atoi(tmp[i]);
+		i++;
+	}
+	free__tab(&tmp);
+}
+
+bool	get_colors(t_data *data, int type, int index)
+{
+	if (type == F)
+	{
+		if (!parse_color(data, type, index, 'f'))
+		{
+			printf("floor color invalid\n");
+			return (false);
 		}
 	}
-	if ( type == C)
+	if (type == C)
 	{
-		tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
-		while(i < 3 && tmp[i])
+		if (!parse_color(data, type, index, 'c'))
 		{
-			printf("%s\n",tmp[i]);
-			data->c[i] = ft_atoi(tmp[i]);
-			i++;
+			printf("floor color invalid\n");
+			return (false);
 		}
 	}
 }
 
-int	map_length(char **map)
+int	tab__length(char **map)
 {
 	int	i;
 
@@ -103,11 +168,17 @@ bool	parse_assets(t_data *data)
 			printf("assests not valid\n");
 			return (false);
 		}
-		get_asset(data, type, i);
+		if (type == F || type == C)
+			if (!get_colors(data, type, i))
+				return (false);
+		else
+			if (!get_texture(data, type, i))
+				return (false);
 		i++;
 	}
 	return (true);
 }
+
 bool	check_tab(int *tab)
 {
 	int		i;
@@ -119,16 +190,18 @@ bool	check_tab(int *tab)
 			return (false);
 		i++;
 	}
-	if ( !check_length(tab))
-		return (false);
+	//no need already checked
+	// if (!check_length(tab))
+	// 	return (false);
 	return (true);
 }
+
 bool	check_assets(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	if (map_length(data->o_map) < 9)
+	if (tab__length(data->o_map) < 9)
 	{
 		printf("non valid map\n");
 		return (false);
