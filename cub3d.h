@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/28 14:33:35 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:39:04 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ bool	check_assets(t_data *data);
 
 //utils2
 bool	check_range(int n);
+bool	check_lenght(int *tab);
 //		map_checker.c
 bool	check_map(char *str, t_data *data);
 

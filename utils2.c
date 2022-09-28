@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:47:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/28 15:12:20 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 16:04:39 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,15 @@ bool	check_range(int n)
 	return (true);	
 }
 
-bool
+bool	check_lenght(int *tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	if (i != 3)
+		return (false);
+	return (true);
+}
+

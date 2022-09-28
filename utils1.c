@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/28 15:17:12 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:40:05 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,12 @@ bool	check_tab(int *tab)
 	i = 0;
 	while (i < 3)
 	{
-		if (tab[i] == -1 || !check_range(tab[i]) || map_length())
+		if (tab[i] == -1 || !check_range(tab[i]))
 			return (false);
 		i++;
 	}
+	if ( !check_length(tab))
+		return (false);
 	return (true);
 }
 bool	check_assets(t_data *data)
