@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:26:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/27 20:19:43 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:27:50 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_strncmp(char *s1, char *s2, int n)
 int	ft_isspace(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v'
-		|| '\f' || c == '\r' || c == ' ')
+		||c == '\f' || c == '\r' || c == ' ')
 		return (true);
 	return (false);
 }
@@ -82,5 +82,6 @@ void	init_data(t_data *data)
 	{
 		data->f[i] = -1;
 		data->c[i] = -1;
+		i++;
 	}
 }

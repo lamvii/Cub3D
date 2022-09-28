@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/27 20:19:57 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:19:42 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_data
 void	init_data(t_data *data);
 int		ft_strncmp(char *s1, char *s2, int n);
 int		ft_open(char *file);
-int		ft_isspace(char c);
+int	ft_isspace(char c);
 
 //		utlis1.c
 char	**ft_realoc(char **tab, int size);

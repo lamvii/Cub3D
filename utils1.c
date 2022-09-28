@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/27 20:23:53 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:31:55 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*pass_w_space(char *str)
 	i = 0;
 	if (!str)
 		return (NULL);
-	while (ft_ispace(str[i]))
+	while (ft_isspace(str[i]))
 		i++;
 	return (str + i);
 }
@@ -89,7 +89,19 @@ bool	parse_assets(t_data *data)
 	}
 	return (true);
 }
+bool	check_tab(int *tab)
+{
+	int		i;
 
+	i = 0;
+	while (i < 3)
+	{
+		if (tab[i] == -1)
+			return (false);
+		i++;
+	}
+	return (true);
+}
 bool	check_assets(t_data *data)
 {
 	int	i;
@@ -103,10 +115,11 @@ bool	check_assets(t_data *data)
 	if (!parse_assets(data))
 		return (false);
 	if (!data->no || !data->so || !data->we || !data->ea
-		|| !data->f || !data->c)
+		|| !check_tab(data->f) || !check_tab(data->c))
 	{
 		printf("assests not valid\n");
 		return (false);
 	}
+	puts("here");
 	return (true);
 }
