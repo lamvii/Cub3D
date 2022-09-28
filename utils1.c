@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/28 12:16:57 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:17:12 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	get_asset(t_data *data, int type, int index)
 			i++;
 		}
 	}
-		if ( type == C)
+	if ( type == C)
 	{
 		tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
 		while(i < 3 && tmp[i])
@@ -75,11 +75,6 @@ void	get_asset(t_data *data, int type, int index)
 			i++;
 		}
 	}
-	//elem =split by ',' --> f[i] =atoi(elems) kmelhom llah irdi3lik
-	// if (type == F)
-	// 	data->f = data->o_map[index];
-	// if (type == C)
-	// 	data->c = data->o_map[index];
 }
 
 int	map_length(char **map)
@@ -120,7 +115,7 @@ bool	check_tab(int *tab)
 	i = 0;
 	while (i < 3)
 	{
-		if (tab[i] == -1)
+		if (tab[i] == -1 || !check_range(tab[i]) || map_length())
 			return (false);
 		i++;
 	}
