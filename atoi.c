@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/28 12:13:18 by rnaamaou         ###   ########.fr       */
+/*   Created: 2021/11/08 12:16:01 by ael-idri          #+#    #+#             */
+/*   Updated: 2022/09/28 12:31:48 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-
-int	main(int ac, char **av)
+int	ft_atoi(const char *str)
 {
-	t_data	data;
+	int		i;
+	int		s;
+	int		r;
+	char	*ptr;
 
-	if ( ac != 2)
+	i = 0;
+	s = 1;
+	r = 0;
+	ptr = (char *)str;
+	if (str[0] == '\0')
+		return (-1);
+	while (ptr[i] == 32 || (ptr[i] >= 9 && ptr[i] <= 13))
+		i++;
+	if (ptr[i] == '-' || ptr[i] == '+')
 	{
-		write (2, "Error invalide arg\n", 20);
-		return (1);
+		if (ptr[i] == '-')
+			s = s * (-1);
+		i++;
 	}
-	init_data(&data);
-	if (!check_map(av[1],&data))
-		return (1);
-	printf("%d---%d---%d\n",data.f[0],data.f[1],data.f[2]);
-	printf("%d---%d---%d\n",data.c[0],data.c[1],data.c[2]);
-	printf("kolchi mzyan\n");
-	return (0);
+	while (ptr[i] >= '0' && ptr[i] <= '9' )
+	{
+		r = r * 10 + ptr[i] - 48;
+		i++;
+	}
+	return (s * r);
 }

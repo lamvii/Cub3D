@@ -6,7 +6,7 @@
 #    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/09/27 18:27:54 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/09/28 12:10:58 by rnaamaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC			=	cc
 FLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
-				utils.c utils1.c map_checker.c cub3d.c 
+				split.c atoi.c utils.c utils1.c map_checker.c cub3d.c 
 OBJS		=	$(SRCS:.c=.o)
 HEADER		=	cub3d.h ./GNL/get_next_line.h
 

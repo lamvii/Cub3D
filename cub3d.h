@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/28 11:19:42 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:09:04 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,16 @@ typedef struct s_data
 	int		c[3];
 }				t_data;
 
+//split.c
+char	**ft_split(char const *s, char c);
+
+//atoi.c
+int	ft_atoi(const char *str);
 //		utils.c
 void	init_data(t_data *data);
 int		ft_strncmp(char *s1, char *s2, int n);
 int		ft_open(char *file);
-int	ft_isspace(char c);
+int		ft_isspace(char c);
 
 //		utlis1.c
 char	**ft_realoc(char **tab, int size);

@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/28 11:31:55 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:16:57 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ char	*pass_w_space(char *str)
 
 void	get_asset(t_data *data, int type, int index)
 {
+	char	**tmp;
+	int		i;
+
+	i = 0;
 	if (type == NO)
 		data->no = pass_w_space(data->o_map[index] + 3);
 	if (type == SO)
@@ -51,6 +55,26 @@ void	get_asset(t_data *data, int type, int index)
 		data->we = pass_w_space(data->o_map[index] + 3);
 	if (type == EA)
 		data->ea = pass_w_space(data->o_map[index] + 3);
+	if ( type == F)
+	{
+		tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
+		while(i < 3)
+		{
+			printf("%s\n",tmp[i]);
+			data->f[i] = ft_atoi(tmp[i]);
+			i++;
+		}
+	}
+		if ( type == C)
+	{
+		tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
+		while(i < 3 && tmp[i])
+		{
+			printf("%s\n",tmp[i]);
+			data->c[i] = ft_atoi(tmp[i]);
+			i++;
+		}
+	}
 	//elem =split by ',' --> f[i] =atoi(elems) kmelhom llah irdi3lik
 	// if (type == F)
 	// 	data->f = data->o_map[index];
@@ -120,6 +144,5 @@ bool	check_assets(t_data *data)
 		printf("assests not valid\n");
 		return (false);
 	}
-	puts("here");
 	return (true);
 }
