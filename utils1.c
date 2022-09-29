@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 18:51:17 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 19:26:23 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,48 @@ char	*pass_w_space(char *str)
 	return (str + i);
 }
 
+//need test
+char	*trim(char *str, char **dist, int from)
+{
+	int		start;
+	int		end;
+
+	start = from;
+	end = ft_strlen(str);
+	while (str[start] == ' ')
+		start++;
+	while (str[end] == ' ')
+		end--;
+	if (end - start <= 0)
+		*dist = ft_strdup("");
+	else
+		*dist = ft_substr(str, start, end - start);
+	return (*dist);
+}
+
 bool	get_texture(t_data *data, int type, int index)
 {
 	if (type == NO)
 	{
-		data->no = pass_w_space(data->o_map[index] + 3);
+		trim(data->o_map[index], &data->no, 3);
 		if (!check_xpm(data->no))
 			return (false);
 	}
 	if (type == SO)
 	{
-		data->so = pass_w_space(data->o_map[index] + 3);
+		trim(data->o_map[index], &data->so, 3);
 		if (!check_xpm(data->so))
 			return (false);
 	}
 	if (type == WE)
 	{
-		data->we = pass_w_space(data->o_map[index] + 3);
+		trim(data->o_map[index], &data->we, 3);
 		if (!check_xpm(data->we))
 			return (false);
 	}
 	if (type == EA)
 	{
-		data->ea = pass_w_space(data->o_map[index] + 3);
+		trim(data->o_map[index], &data->ea, 3);
 		if (!check_xpm(data->ea))
 			return (false);
 	}
@@ -110,10 +129,11 @@ void	free__tab(char ***tab)
 bool	parse_color(t_data *data, int index, char flag)
 {
 	char	**tmp;
+	char	*colo;
 	int		i;
 
 	i = 0;
-	tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
+	tmp = ft_split(trim(data->o_map[index], &colo, 2), ',');
 	if (!tmp)
 		return (false);
 	if (check_length(tmp) != 3)
@@ -129,6 +149,7 @@ bool	parse_color(t_data *data, int index, char flag)
 		i++;
 	}
 	free__tab(&tmp);
+	free(colo);
 	return (true);
 }
 

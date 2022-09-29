@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:48:31 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 18:36:53 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:58:15 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+
+//same as libft
 int	ft_strlen_gnl(const char *s)
 {
 	int		i;
@@ -26,6 +28,7 @@ int	ft_strlen_gnl(const char *s)
 	return (i);
 }
 
+//same
 char	*ft_strdup_gnl(const char *src)
 {
 	int		i;
@@ -51,6 +54,8 @@ char	*ft_strdup_gnl(const char *src)
 	return (dest);
 }
 
+
+// not the same !!
 char	*ft_strchr_gnl(const char *s, int c)
 {
 	int		i;
@@ -76,6 +81,7 @@ char	*ft_strchr_gnl(const char *s, int c)
 		return (str + i);
 }
 
+//same
 void	*ft_memcpy_gnl(void *dst, const void *src, int n)
 {
 	char		*d;
@@ -95,6 +101,8 @@ void	*ft_memcpy_gnl(void *dst, const void *src, int n)
 	return (d);
 }
 
+
+// not the same free(line)!!
 char	*ft_strjoin_gnl(char *line, char *buffer)
 {
 	char	*nline;
