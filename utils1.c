@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 15:01:38 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:58:33 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,22 @@ bool	get_texture(t_data *data, int type, int index)
 bool	ft_isdigit(char *str)
 {
 	int	i;
+	int pos;
 
 	i = 0;
 	if (!str)
 		return (false);
+	pos = ft_strlen(str) - 2;
+	while (str[pos] == ' ')
+		pos--;
 	while (str[i] && str[i] != '\n')
 	{
-		if (str[i] > '9' || str[i] < '0')
+		if (str[i] <= '9' && str[i] >= '0')
+			i++;
+		else if (i == pos + 1)	
+			break ;
+		else
 			return (false);
-		i++;
 	}
 	return (true);
 }
