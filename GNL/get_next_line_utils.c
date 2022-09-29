@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 16:48:31 by ael-idri          #+#    #+#             */
-/*   Updated: 2021/12/27 16:48:33 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:36:53 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *s)
+int	ft_strlen_gnl(const char *s)
 {
 	int		i;
 	char	*str;
@@ -26,7 +26,7 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup_gnl(const char *src)
 {
 	int		i;
 	int		j;
@@ -35,7 +35,7 @@ char	*ft_strdup(const char *src)
 
 	i = 0;
 	s = (char *)src;
-	j = ft_strlen(s);
+	j = ft_strlen_gnl(s);
 	dest = (char *)malloc(sizeof(char) * (j + 1));
 	if (dest == NULL)
 		return (NULL);
@@ -51,14 +51,14 @@ char	*ft_strdup(const char *src)
 	return (dest);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr_gnl(const char *s, int c)
 {
 	int		i;
 	int		sl;
 	char	*str;
 
 	i = 0;
-	sl = ft_strlen(s);
+	sl = ft_strlen_gnl(s);
 	str = (char *)s;
 	if (c == '\0')
 	{
@@ -76,7 +76,7 @@ char	*ft_strchr(const char *s, int c)
 		return (str + i);
 }
 
-void	*ft_memcpy(void *dst, const void *src, int n)
+void	*ft_memcpy_gnl(void *dst, const void *src, int n)
 {
 	char		*d;
 	const char	*s;
@@ -95,22 +95,22 @@ void	*ft_memcpy(void *dst, const void *src, int n)
 	return (d);
 }
 
-char	*ft_strjoin(char *line, char *buffer)
+char	*ft_strjoin_gnl(char *line, char *buffer)
 {
 	char	*nline;
 
 	if (!line && !buffer)
 		return (NULL);
 	if (!line)
-		return (ft_strdup(buffer));
+		return (ft_strdup_gnl(buffer));
 	if (!buffer)
 		return (line);
-	nline = (char *)malloc(ft_strlen(buffer) + ft_strlen(line) + 1);
+	nline = (char *)malloc(ft_strlen_gnl(buffer) + ft_strlen_gnl(line) + 1);
 	if (!nline)
 		return (NULL);
-	ft_memcpy(nline, line, ft_strlen(line));
-	ft_memcpy(nline + ft_strlen(line), buffer, ft_strlen(buffer));
-	nline[ft_strlen(line) + ft_strlen(buffer)] = '\0';
+	ft_memcpy_gnl(nline, line, ft_strlen_gnl(line));
+	ft_memcpy_gnl(nline + ft_strlen_gnl(line), buffer, ft_strlen_gnl(buffer));
+	nline[ft_strlen_gnl(line) + ft_strlen_gnl(buffer)] = '\0';
 	free(line);
 	return (nline);
 }

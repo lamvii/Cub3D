@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 00:12:28 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/04/04 15:44:46 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:27:13 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**ft_split(char const *s, char c)
 {
 	char	**tab;
 	int		i;
-	int		j
+	int		j;
 	int		word;
 
 	if (!s)

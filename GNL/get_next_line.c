@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 22:45:08 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/01/05 22:45:28 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:37:35 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	ft_trait2(char **line, char **tem)
 	char	*ptr;
 	char	*tmp;
 
-	ptr = ft_strchr(*tem, '\n');
+	ptr = ft_strchr_gnl(*tem, '\n');
 	*ptr = '\0';
-	*line = ft_strjoin(*line, *tem);
-	*line = ft_strjoin(*line, "\n");
+	*line = ft_strjoin_gnl(*line, *tem);
+	*line = ft_strjoin_gnl(*line, "\n");
 	if (*(ptr + 1) != '\0')
 	{
 		tmp = *tem;
-		*tem = ft_strdup(ptr + 1);
+		*tem = ft_strdup_gnl(ptr + 1);
 		free(tmp);
 	}
 	else
@@ -45,14 +45,14 @@ char	*ft_check_tem(char *line, int *sz, char **tem)
 {
 	if (*tem)
 	{
-		if (ft_strchr(*tem, '\n'))
+		if (ft_strchr_gnl(*tem, '\n'))
 		{
 			ft_trait2(&line, tem);
 			*sz = 0;
 		}
 		else
 		{
-			line = ft_strjoin(line, *tem);
+			line = ft_strjoin_gnl(line, *tem);
 			ft_free(tem);
 		}
 	}
@@ -65,18 +65,18 @@ int	ft_trait1(char **line, char *buff, char **tem, int *sz)
 
 	if (*sz == 0)
 		return (0);
-	ptr = ft_strchr(buff, '\n');
+	ptr = ft_strchr_gnl(buff, '\n');
 	if (ptr)
 	{
 		*ptr = '\0';
-		*line = ft_strjoin(*line, buff);
-		*line = ft_strjoin(*line, "\n");
+		*line = ft_strjoin_gnl(*line, buff);
+		*line = ft_strjoin_gnl(*line, "\n");
 		if (*(ptr + 1) != '\0')
-			*tem = ft_strdup(ptr + 1);
+			*tem = ft_strdup_gnl(ptr + 1);
 		return (0);
 	}
 	else
-		*line = ft_strjoin(*line, buff);
+		*line = ft_strjoin_gnl(*line, buff);
 	return (1);
 }
 

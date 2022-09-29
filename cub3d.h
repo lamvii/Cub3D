@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 12:55:23 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:40:03 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@
 # include <stdbool.h> 
 # include <errno.h> 
 # include <stdio.h>
-#include <limits.h>
+# include <limits.h>
 
+# include "libft/libft.h"
 # include "./GNL/get_next_line.h"
 
 # define NO 1
@@ -51,7 +52,7 @@ char	**ft_split(char const *s, char c);
 int	ft_atoi(const char *str);
 //		utils.c
 void	init_data(t_data *data);
-int		ft_strncmp(char *s1, char *s2, int n);
+//int		ft_strncmp(char *s1, char *s2, int n);
 int		ft_open(char *file);
 int		ft_isspace(char c);
 

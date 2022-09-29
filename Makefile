@@ -6,7 +6,7 @@
 #    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/09/29 12:53:18 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/09/29 18:42:06 by rnaamaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,22 +17,31 @@ RM			=	rm -rf
 SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
 				split.c atoi.c utils.c utils1.c utils2.c map_checker.c cub3d.c 
 OBJS		=	$(SRCS:.c=.o)
-HEADER		=	cub3d.h ./GNL/get_next_line.h
+HEADER		=	cub3d.h ./GNL/get_next_line.h ./libft/libft.h
+PATH_LIBFT 	=	libft/
+LIBFT		=	libft/libft.a
 
 
 all			:	$(NAME)
 
-$(NAME)		:	$(OBJS) $(HEADER)
-				${CC} ${FLAGS} ${OBJS} -o $(NAME)
+$(LIBFT) :
+				@make -C $(PATH_LIBFT)
+
+$(NAME)		:	$(OBJS) $(HEADER) $(LIBFT)
+				${CC} ${FLAGS} ${OBJS} -o $(NAME) $(LIBFT)
+
+
 
 %.o			:	%.c $(HEADER)
-				$(CC) ${FLAGS} -c $< -o $@
+				$(CC) ${FLAGS}  -c $< -o $@
     
 clean		:
 				$(RM) $(OBJS)
+				@make clean -C $(PATH_LIBFT)
 
 fclean		:	clean
 				$(RM) $(NAME)
+				@make fclean -C $(PATH_LIBFT)			
 
 re			:	fclean all
 
