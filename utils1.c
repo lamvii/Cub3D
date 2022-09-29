@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 15:58:33 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:51:17 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	get_texture(t_data *data, int type, int index)
 bool	ft_isdigit(char *str)
 {
 	int	i;
-	int pos;
+	int	pos;
 
 	i = 0;
 	if (!str)
@@ -85,7 +85,7 @@ bool	ft_isdigit(char *str)
 	{
 		if (str[i] <= '9' && str[i] >= '0')
 			i++;
-		else if (i == pos + 1)	
+		else if (i == pos + 1)
 			break ;
 		else
 			return (false);
@@ -205,9 +205,6 @@ bool	check_tab(int *tab)
 			return (false);
 		i++;
 	}
-	//no need already checked
-	// if (!check_length(tab))
-	// 	return (false);
 	return (true);
 }
 

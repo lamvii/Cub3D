@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/09/29 18:42:06 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/09/29 18:48:48 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC			=	cc
 FLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
-				split.c atoi.c utils.c utils1.c utils2.c map_checker.c cub3d.c 
+				utils.c utils1.c utils2.c map_checker.c cub3d.c 
 OBJS		=	$(SRCS:.c=.o)
 HEADER		=	cub3d.h ./GNL/get_next_line.h ./libft/libft.h
 PATH_LIBFT 	=	libft/

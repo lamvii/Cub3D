@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 18:40:03 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:45:21 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ typedef struct s_data
 }				t_data;
 
 //split.c
-char	**ft_split(char const *s, char c);
+// char	**ft_split(char const *s, char c);
 
 //atoi.c
-int	ft_atoi(const char *str);
+// int		ft_atoi(const char *str);
+
 //		utils.c
 void	init_data(t_data *data);
-//int		ft_strncmp(char *s1, char *s2, int n);
 int		ft_open(char *file);
 int		ft_isspace(char c);
 
@@ -60,11 +60,11 @@ int		ft_isspace(char c);
 char	**ft_realoc(char **tab, int size);
 bool	check_assets(t_data *data);
 
-
 //utils2
 bool	check_range(int n);
 bool	check_xpm(char *str);
 int		check_length(char **tab);
+
 //		map_checker.c
 bool	check_map(char *str, t_data *data);
 

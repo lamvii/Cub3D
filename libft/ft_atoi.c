@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:16:01 by ael-idri          #+#    #+#             */
-/*   Updated: 2021/11/13 22:55:16 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:47:41 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <limits.h>
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		s;
-	int		r;
-	char	*ptr;
+	int			i;
+	int			s;
+	long long	r;
+	char		*ptr;
 
 	i = 0;
 	s = 1;
@@ -36,5 +37,7 @@ int	ft_atoi(const char *str)
 		r = r * 10 + ptr[i] - 48;
 		i++;
 	}
+	if ((s * r) > INT_MAX || (s * r) < INT_MIN)
+		return (-1);
 	return (s * r);
 }
