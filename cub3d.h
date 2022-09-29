@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 18:45:21 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:59:57 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,35 @@ typedef struct s_data
 	int		c[3];
 }				t_data;
 
-//split.c
-// char	**ft_split(char const *s, char c);
-
-//atoi.c
-// int		ft_atoi(const char *str);
-
 //		utils.c
-void	init_data(t_data *data);
-int		ft_open(char *file);
-int		ft_isspace(char c);
+int		ft_type(char *str);
+char	*trim(char *str, char **dist);
+bool	ft_isdigit(char *str);
+void	free__tab(char ***tab);
+int		tab__length(char **map);
 
 //		utlis1.c
+bool	check_tab(int *tab);
+bool	check_range(int n);
+int		check_length(char **tab);
+bool	check_xpm(char *str);
+
+//		read_map.c
+bool	check_in(char *str);
+bool	is_emptyline(char **line, int i);
+int		ft_open(char *file);
 char	**ft_realoc(char **tab, int size);
+bool	read_map(char *file, t_data *data);
+
+//		check_assets.c
+bool	get_texture(t_data *data, int type, int index);
+bool	parse_color(t_data *data, int index, char flag);
+bool	get_colors(t_data *data, int type, int index);
+bool	parse_assets(t_data *data);
 bool	check_assets(t_data *data);
 
-//utils2
-bool	check_range(int n);
-bool	check_xpm(char *str);
-int		check_length(char **tab);
-
 //		map_checker.c
+void	init_data(t_data *data);
 bool	check_map(char *str, t_data *data);
 
 #endif

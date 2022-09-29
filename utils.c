@@ -6,65 +6,86 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:26:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 18:49:44 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:52:56 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_isspace(char c)
+int	ft_type(char *str)
 {
-	if (c == '\t' || c == '\n' || c == '\v'
-		||c == '\f' || c == '\r' || c == ' ')
-		return (true);
-	return (false);
+	if (!ft_strncmp(str, "NO ", 3))
+		return (NO);
+	if (!ft_strncmp(str, "SO ", 3))
+		return (SO);
+	if (!ft_strncmp(str, "WE ", 3))
+		return (WE);
+	if (!ft_strncmp(str, "EA ", 3))
+		return (EA);
+	if (!ft_strncmp(str, "F ", 2))
+		return (F);
+	if (!ft_strncmp(str, "C ", 2))
+		return (C);
+	return (0);
 }
 
-int	ft_open(char *file)
+char	*trim(char *str, char **dist)
 {
-	int	fd;
+	int		start;
+	int		end;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error");
-		strerror(errno);
-		return (0);
-	}
-	return (fd);
+	start = 0;
+	end = ft_strlen(str) - 2;
+	while (str[start] == ' ')
+		start++;
+	while (str[end] == ' ')
+		end--;
+	if (end - start < 0)
+		*dist = ft_strdup("");
+	else
+		*dist = ft_substr(str, start, end - start + 1);
+	return (*dist);
 }
 
-char	**ft_realoc(char **tab, int size)
-{
-	int		i;
-	char	**n_tab;
-
-	i = 0;
-	n_tab = (char **)malloc(sizeof(char *) * size);
-	while (i < size - 1)
-	{
-		n_tab[i] = tab[i];
-		i++;
-	}
-	free(tab);
-	return (n_tab);
-}
-
-void	init_data(t_data *data)
+bool	ft_isdigit(char *str)
 {
 	int	i;
 
-	data->o_map = NULL;
-	data->map = NULL;
-	data->no = NULL;
-	data->so = NULL;
-	data->we = NULL;
-	data->ea = NULL;
 	i = 0;
-	while (i < 3)
+	if (!str)
+		return (false);
+	while (str[i])
 	{
-		data->f[i] = -1;
-		data->c[i] = -1;
+		if (str[i] > '9' || str[i] < '0')
+			return (false);
 		i++;
 	}
+	return (true);
 }
+
+void	free__tab(char ***tab)
+{
+	char	**t;
+	int		i;
+
+	t = *tab;
+	i = 0;
+	if (!t)
+		return ;
+	while (t[i])
+		free(t[i++]);
+	free(t);
+}
+
+int	tab__length(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (!map)
+		return (0);
+	while (map[i])
+		i++;
+	return (i);
+}
+
