@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:47:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 13:03:08 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:10:06 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	check_range(int n)
 	return (true);
 }
 
-int		check_length(char **tab)
+int	check_length(char **tab)
 {
 	int	i;
 
@@ -29,9 +29,9 @@ int		check_length(char **tab)
 	return (i);
 }
 
-bool	check_xpm (char *str)
+bool	check_xpm(char *str)
 {
-	if (!ft_strncmp(str +(ft_strlen(str) - 4), ".xpm", 4))
+	if (!ft_strncmp(str +(ft_strlen(str) - 5), ".xpm", 4))
 		return (true);
 	return (false);
 }

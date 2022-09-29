@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 13:06:47 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:12:46 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ bool	ft_isdigit(char *str)
 	{
 		if (str[i] > '9' || str[i] < '0')
 			return (false);
+		i++;
 	}
 	return (true);
 }
@@ -106,10 +107,11 @@ bool	parse_color(t_data *data, int index, char flag)
 
 	i = 0;
 	tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
-	if (check_length(tmp) < 4)
+	if (check_length(tmp) != 3)
 		return (false);
 	while (i < 3)
 	{
+		puts("dsf");
 		// printf("%s\n",tmp[i]);
 		if (!ft_isdigit(tmp[i]))
 			return (false);
@@ -137,7 +139,7 @@ bool	get_colors(t_data *data, int type, int index)
 	{
 		if (!parse_color(data, index, 'c'))
 		{
-			printf("floor color invalid\n");
+			printf("ciell color invalid\n");
 			return (false);
 		}
 	}
