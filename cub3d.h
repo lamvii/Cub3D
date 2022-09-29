@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 21:59:57 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 22:22:23 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ bool	parse_color(t_data *data, int index, char flag);
 bool	get_colors(t_data *data, int type, int index);
 bool	parse_assets(t_data *data);
 bool	check_assets(t_data *data);
+
+//		check_playermap.c
+bool	check_player_map(t_data *data);
 
 //		map_checker.c
 void	init_data(t_data *data);

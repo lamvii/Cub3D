@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:11:25 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 21:58:41 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 22:12:04 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	check_map(char *str, t_data *data)
 		return (false);
 	if (!check_assets(data))
 		return (false);
-	// if (!check_player_map(str, data))
-	// 	return (false);
+	if (!check_player_map(data))
+		return (false);
 	return (true);
 }
