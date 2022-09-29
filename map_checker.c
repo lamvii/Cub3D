@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:11:25 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/27 20:20:27 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:04:55 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,18 @@ bool	read_map(char *file, t_data *data)
 		data->o_map = ft_realoc(data->o_map, i + 1);
 		data->o_map[i] = line;
 	}
+	//puts ("here");
 	return (true);
 }
 
 bool	check_map(char *str, t_data *data)
 {
 	if (!read_map(str, data))
-		return (false);
+	{//puts("here");
+		return (false);}
 	if (!check_assets(data))
+	{puts("here check asse");
 		return (false);
+	}
 	return (true);
 }

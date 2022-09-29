@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/28 15:39:04 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:55:23 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdbool.h> 
 # include <errno.h> 
 # include <stdio.h>
+#include <limits.h>
 
 # include "./GNL/get_next_line.h"
 
@@ -61,7 +62,8 @@ bool	check_assets(t_data *data);
 
 //utils2
 bool	check_range(int n);
-bool	check_lenght(int *tab);
+bool	check_xpm(char *str);
+int		check_length(char **tab);
 //		map_checker.c
 bool	check_map(char *str, t_data *data);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/28 20:37:18 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 13:06:47 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,14 @@ void	free__tab(char ***tab)
 	free(t);
 }
 
-bool	parse_color(t_data *data, int type, int index, char flag)
+bool	parse_color(t_data *data, int index, char flag)
 {
 	char	**tmp;
 	int		i;
 
 	i = 0;
 	tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
-	if (tab__length(tmp) < 4)
+	if (check_length(tmp) < 4)
 		return (false);
 	while (i < 3)
 	{
@@ -120,13 +120,14 @@ bool	parse_color(t_data *data, int type, int index, char flag)
 		i++;
 	}
 	free__tab(&tmp);
+	return (true);
 }
 
 bool	get_colors(t_data *data, int type, int index)
 {
 	if (type == F)
 	{
-		if (!parse_color(data, type, index, 'f'))
+		if (!parse_color(data, index, 'f'))
 		{
 			printf("floor color invalid\n");
 			return (false);
@@ -134,12 +135,13 @@ bool	get_colors(t_data *data, int type, int index)
 	}
 	if (type == C)
 	{
-		if (!parse_color(data, type, index, 'c'))
+		if (!parse_color(data, index, 'c'))
 		{
 			printf("floor color invalid\n");
 			return (false);
 		}
 	}
+	return (true);
 }
 
 int	tab__length(char **map)
@@ -169,11 +171,18 @@ bool	parse_assets(t_data *data)
 			return (false);
 		}
 		if (type == F || type == C)
+		{
 			if (!get_colors(data, type, i))
+			{puts("color");
 				return (false);
+			}
+		}
 		else
+		{
 			if (!get_texture(data, type, i))
-				return (false);
+			{puts("tex");
+				return (false);}
+		}
 		i++;
 	}
 	return (true);
@@ -201,13 +210,14 @@ bool	check_assets(t_data *data)
 	int	i;
 
 	i = 0;
-	if (tab__length(data->o_map) < 9)
+	if (check_length(data->o_map) < 9)
 	{
 		printf("non valid map\n");
 		return (false);
 	}
 	if (!parse_assets(data))
-		return (false);
+	{puts("parse");
+		return (false);}
 	if (!data->no || !data->so || !data->we || !data->ea
 		|| !check_tab(data->f) || !check_tab(data->c))
 	{
