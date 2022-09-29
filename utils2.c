@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 13:47:46 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 18:51:29 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:34:27 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	check_length(char **tab)
 
 bool	check_xpm(char *str)
 {
-	if (!ft_strncmp(str +(ft_strlen(str) - 5), ".xpm", 4))
+	if (!ft_strncmp(str +(ft_strlen(str) - 4), ".xpm", 4))
 		return (true);
+	printf("texture invalid (.xpm)");
 	return (false);
 }

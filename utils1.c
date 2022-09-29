@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 19:26:23 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 21:34:46 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,23 @@ int	ft_type(char *str)
 	return (0);
 }
 
-char	*pass_w_space(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	while (ft_isspace(str[i]))
-		i++;
-	return (str + i);
-}
 
 //need test
-char	*trim(char *str, char **dist, int from)
+char	*trim(char *str, char **dist)
 {
 	int		start;
 	int		end;
 
-	start = from;
-	end = ft_strlen(str);
+	start = 0;
+	end = ft_strlen(str) - 2;
 	while (str[start] == ' ')
 		start++;
 	while (str[end] == ' ')
 		end--;
-	if (end - start <= 0)
+	if (end - start < 0)
 		*dist = ft_strdup("");
 	else
-		*dist = ft_substr(str, start, end - start);
+		*dist = ft_substr(str, start, end - start + 1);
 	return (*dist);
 }
 
@@ -64,25 +53,25 @@ bool	get_texture(t_data *data, int type, int index)
 {
 	if (type == NO)
 	{
-		trim(data->o_map[index], &data->no, 3);
+		trim(data->o_map[index] + 3, &data->no);
 		if (!check_xpm(data->no))
 			return (false);
 	}
 	if (type == SO)
 	{
-		trim(data->o_map[index], &data->so, 3);
+		trim(data->o_map[index] + 3, &data->so);
 		if (!check_xpm(data->so))
 			return (false);
 	}
 	if (type == WE)
 	{
-		trim(data->o_map[index], &data->we, 3);
+		trim(data->o_map[index] + 3, &data->we);
 		if (!check_xpm(data->we))
 			return (false);
 	}
 	if (type == EA)
 	{
-		trim(data->o_map[index], &data->ea, 3);
+		trim(data->o_map[index] + 3, &data->ea);
 		if (!check_xpm(data->ea))
 			return (false);
 	}
@@ -92,22 +81,15 @@ bool	get_texture(t_data *data, int type, int index)
 bool	ft_isdigit(char *str)
 {
 	int	i;
-	int	pos;
 
 	i = 0;
 	if (!str)
 		return (false);
-	pos = ft_strlen(str) - 2;
-	while (str[pos] == ' ')
-		pos--;
-	while (str[i] && str[i] != '\n')
+	while (str[i])
 	{
-		if (str[i] <= '9' && str[i] >= '0')
-			i++;
-		else if (i == pos + 1)
-			break ;
-		else
+		if (str[i] > '9' || str[i] < '0')
 			return (false);
+		i++;
 	}
 	return (true);
 }
@@ -133,14 +115,14 @@ bool	parse_color(t_data *data, int index, char flag)
 	int		i;
 
 	i = 0;
-	tmp = ft_split(trim(data->o_map[index], &colo, 2), ',');
+	tmp = ft_split(trim(data->o_map[index] + 2, &colo), ',');
 	if (!tmp)
 		return (false);
 	if (check_length(tmp) != 3)
 		return (false);
 	while (i < 3)
 	{
-		if (!ft_isdigit(tmp[i]) || tmp[i][0] == '\n')
+		if (!ft_isdigit(tmp[i]))
 			return (false);
 		if (flag == 'f')
 			data->f[i] = ft_atoi(tmp[i]);
