@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 13:11:25 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 13:04:55 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:13:27 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ bool	check_in(char *str)
 	return (false);
 }
 
+bool	check(char **line, int i)
+{
+	if (*line && i < 6 && *line[0] == '\n')
+	{
+		free (*line);
+		return (false);
+	}
+	return (true);
+}
+
 bool	read_map(char *file, t_data *data)
 {
 	int		i;
@@ -45,26 +55,22 @@ bool	read_map(char *file, t_data *data)
 	i = 0;
 	data->o_map[i] = line;
 	while (line)
-	{	
+	{
 		line = get_next_line(fd);
-		if (line && i < 6 && line[0] == '\n')
+		if (!check(&line, i))
 			continue ;
 		i++;
 		data->o_map = ft_realoc(data->o_map, i + 1);
 		data->o_map[i] = line;
 	}
-	//puts ("here");
 	return (true);
 }
 
 bool	check_map(char *str, t_data *data)
 {
 	if (!read_map(str, data))
-	{//puts("here");
-		return (false);}
-	if (!check_assets(data))
-	{puts("here check asse");
 		return (false);
-	}
+	if (!check_assets(data))
+		return (false);
 	return (true);
 }

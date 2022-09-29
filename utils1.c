@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/29 14:12:46 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:01:38 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool	ft_isdigit(char *str)
 	i = 0;
 	if (!str)
 		return (false);
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 	{
 		if (str[i] > '9' || str[i] < '0')
 			return (false);
@@ -96,7 +96,7 @@ void	free__tab(char ***tab)
 	if (!t)
 		return ;
 	while (t[i])
-		free(t[i]);
+		free(t[i++]);
 	free(t);
 }
 
@@ -107,13 +107,13 @@ bool	parse_color(t_data *data, int index, char flag)
 
 	i = 0;
 	tmp = ft_split(pass_w_space(data->o_map[index] + 2), ',');
+	if (!tmp)
+		return (false);
 	if (check_length(tmp) != 3)
 		return (false);
 	while (i < 3)
 	{
-		puts("dsf");
-		// printf("%s\n",tmp[i]);
-		if (!ft_isdigit(tmp[i]))
+		if (!ft_isdigit(tmp[i]) || tmp[i][0] == '\n')
 			return (false);
 		if (flag == 'f')
 			data->f[i] = ft_atoi(tmp[i]);
@@ -139,7 +139,7 @@ bool	get_colors(t_data *data, int type, int index)
 	{
 		if (!parse_color(data, index, 'c'))
 		{
-			printf("ciell color invalid\n");
+			printf("ceilling color invalid\n");
 			return (false);
 		}
 	}
@@ -175,15 +175,12 @@ bool	parse_assets(t_data *data)
 		if (type == F || type == C)
 		{
 			if (!get_colors(data, type, i))
-			{puts("color");
 				return (false);
-			}
 		}
 		else
 		{
 			if (!get_texture(data, type, i))
-			{puts("tex");
-				return (false);}
+				return (false);
 		}
 		i++;
 	}
@@ -218,8 +215,7 @@ bool	check_assets(t_data *data)
 		return (false);
 	}
 	if (!parse_assets(data))
-	{puts("parse");
-		return (false);}
+		return (false);
 	if (!data->no || !data->so || !data->we || !data->ea
 		|| !check_tab(data->f) || !check_tab(data->c))
 	{

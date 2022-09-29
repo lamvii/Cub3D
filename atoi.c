@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:16:01 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 11:46:15 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:54:25 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		s;
-	int		r;
-	char	*ptr;
+	int			i;
+	int			s;
+	long long	r;
+	char		*ptr;
 
 	i = 0;
 	s = 1;
@@ -37,6 +37,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	if ((s * r) > INT_MAX || (s * r) < INT_MIN)
-		return(-1);
+		return (-1);
 	return (s * r);
 }
