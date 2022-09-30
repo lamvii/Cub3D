@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/29 22:22:23 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/30 14:09:21 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		tab__length(char **map);
 bool	check_tab(int *tab);
 bool	check_range(int n);
 int		check_length(char **tab);
+int		max_width(char **str);
 bool	check_xpm(char *str);
 
 //		read_map.c
