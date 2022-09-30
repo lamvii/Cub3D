@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/30 14:09:21 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:42:13 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int		check_length(char **tab);
 int		max_width(char **str);
 bool	check_xpm(char *str);
 
+//utils2.c
+bool	is_player(char c);
+
 //		read_map.c
 bool	check_in(char *str);
 bool	is_emptyline(char **line, int i);
@@ -75,6 +78,7 @@ bool	check_assets(t_data *data);
 
 //		check_playermap.c
 bool	check_player_map(t_data *data);
+bool	check_zero_sides(char **player_map, int i, int j);
 
 //		map_checker.c
 void	init_data(t_data *data);

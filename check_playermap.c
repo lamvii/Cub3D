@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_playermap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:07:11 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/30 16:47:56 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:42:28 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,22 @@ bool	init_playermap(t_data *data)
 	return (true);
 }
 
-bool	check_zero_sides(char **player_map, int i, int j)
+bool	check_map_elem(int *player_nb, char	**player_map, int i, int j)
 {
-	if (i == 0 || j == 0 || j == check_length(player_map) - 1
-		|| i == max_width(player_map) - 1)
-		return (false);
-	if (player_map[i - 1][j] == ' ')
-		return (false);
-	if (player_map[i + 1][j] == ' ')
-		return (false);
-	if (player_map[i][j - 1] == ' ')
-		return (false);
-	if (player_map[i][j + 1] == ' ')
-		return (false);
+	if (player_map[i][j] == '0')
+	{
+		if (!check_zero_sides(player_map, i, j))
+			return (printf("map border is open !!\n"), false);
+	}
+	else if (is_player(player_map[i][j]))
+	{	
+		if ((++(*player_nb)) != 1)
+			return (printf("player (number) !valid\n"), false);
+		if (!check_zero_sides(player_map, i, j))
+			return (printf("player position !valid\n"), false);
+	}
+	else if (player_map[i][j] != ' ' && player_map[i][j] != '1')
+		return (printf("caracter not valid\n"), false);
 	return (true);
 }
 
@@ -87,24 +90,12 @@ bool	pmap_valid(char	**player_map)
 		j = -1;
 		while (player_map[i][++j])
 		{
-			if (player_map[i][j] == '0')
-			{
-				if (!check_zero_sides(player_map, i, j))
-					return (false);
-			}
-			else if (player_map[i][j] == 'N' || player_map[i][j] == 'S'
-				|| player_map[i][j] == 'E' || player_map[i][j] == 'W')
-			{
-				if ((++player_nb) != 1 || !check_zero_sides(player_map, i, j))
-					return (false);
-			}
-			else if (player_map[i][j] != ' ')
-			{
-				printf("caracter not valid\n");
+			if (!check_map_elem(&player_nb, player_map, i, j))
 				return (false);
-			}
 		}
 	}
+	if (player_nb != 1)
+		return (printf("player position(number) !valid\n"), false);
 	return (true);
 }
 
