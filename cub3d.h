@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   Cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/30 18:42:13 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:32:35 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <errno.h> 
 # include <stdio.h>
 # include <limits.h>
+# include <math.h>
 
 # include "libft/libft.h"
 # include "./GNL/get_next_line.h"
@@ -33,6 +34,9 @@
 # define F 5
 # define C 6
 
+# define CUBWIDTH 640
+# define CUBHIGHT 420
+
 typedef struct s_data
 {
 	char	**o_map;
@@ -43,7 +47,28 @@ typedef struct s_data
 	char	*ea;
 	int		f[3];
 	int		c[3];
+	int		mhight;
+	int		mwidth;
+	int		px;
+	int		py;
+	double	rot_angle;
 }				t_data;
+
+typedef struct s_tex
+{
+	void	*wall;
+}			t_tex;
+
+typedef struct s_cub
+{
+	t_data	*data;
+	void	*mlx_p;
+	void	*mlx_w;
+	t_tex	*wall_no;
+	t_tex	*wall_so;
+	t_tex	*wall_we;
+	t_tex	*wall_ea;
+}				t_cub;
 
 //		utils.c
 int		ft_type(char *str);

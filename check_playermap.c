@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_playermap.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:07:11 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/09/30 18:42:28 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/01 21:32:15 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,17 @@ char	*str_refine(char *str, int width)
 
 bool	init_playermap(t_data *data)
 {
-	int	length;
-	int	width;
 	int	i;
 
 	i = 0;
-	length = tab__length(data->o_map + 6);
-	width = max_width(data->o_map + 6);
-	data->map = (char **)malloc(sizeof(char *) * length);
+	data->mhight = tab__length(data->o_map + 6);
+	data->mwidth = max_width(data->o_map + 6);
+	data->map = (char **)malloc(sizeof(char *) * data->mhight);
 	if (!data->map)
 		return (false);
-	while (i < length)
+	while (i < data->mhight)
 	{
-		data->map[i] = str_refine(data->o_map[i + 6], width);
+		data->map[i] = str_refine(data->o_map[i + 6], data->mwidth);
 		if (!data->map[i])
 			return (false);
 		i++;
@@ -58,26 +56,36 @@ bool	init_playermap(t_data *data)
 	return (true);
 }
 
-bool	check_map_elem(int *player_nb, char	**player_map, int i, int j)
+bool	check_map_elem(int *player_nb, t_data *data, int i, int j)
 {
-	if (player_map[i][j] == '0')
+	if (data->map[i][j] == '0')
 	{
-		if (!check_zero_sides(player_map, i, j))
+		if (!check_zero_sides(data->map, i, j))
 			return (printf("map border is open !!\n"), false);
 	}
-	else if (is_player(player_map[i][j]))
+	else if (is_player(data->map[i][j]))
 	{	
 		if ((++(*player_nb)) != 1)
 			return (printf("player (number) !valid\n"), false);
-		if (!check_zero_sides(player_map, i, j))
+		if (!check_zero_sides(data->map, i, j))
 			return (printf("player position !valid\n"), false);
+		data->px = j;
+		data->py = -i;
+		if (data->map[i][j] == 'N')
+			data->rot_angle = 1.5 * M_PI;
+		if (data->map[i][j] == 'S')
+			data->rot_angle = M_PI / 2;
+		if (data->map[i][j] == 'E')
+			data->rot_angle = 0;
+		if (data->map[i][j] == 'W')
+			data->rot_angle = M_PI;
 	}
-	else if (player_map[i][j] != ' ' && player_map[i][j] != '1')
+	else if (data->map[i][j] != ' ' && data->map[i][j] != '1')
 		return (printf("caracter not valid\n"), false);
 	return (true);
 }
 
-bool	pmap_valid(char	**player_map)
+bool	pmap_valid(t_data	*data)
 {
 	int	i;
 	int	j;
@@ -85,12 +93,12 @@ bool	pmap_valid(char	**player_map)
 
 	i = -1;
 	player_nb = 0;
-	while (player_map[++i])
+	while (data->map[++i])
 	{
 		j = -1;
-		while (player_map[i][++j])
+		while (data->map[i][++j])
 		{
-			if (!check_map_elem(&player_nb, player_map, i, j))
+			if (!check_map_elem(&player_nb, data, i, j))
 				return (false);
 		}
 	}
@@ -106,7 +114,7 @@ bool	check_player_map(t_data *data)
 		printf("fail init map!!\n");
 		return (false);
 	}
-	if (!pmap_valid(data->map))
+	if (!pmap_valid(data))
 	{
 		printf("player map not valide\n");
 		return (false);

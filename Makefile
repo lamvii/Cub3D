@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/01 12:49:32 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/10/01 21:05:48 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ $(LIBFT) :
 				@make -C $(PATH_LIBFT)
 
 $(NAME)		:	$(OBJS) $(HEADER) $(LIBFT)
-				${CC} ${FLAGS} ${OBJS} -o $(NAME) $(LIBFT)
+				${CC} ${FLAGS} ${OBJS} -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT)
 
 
 
