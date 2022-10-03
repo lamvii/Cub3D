@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/02 20:07:02 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 10:47:54 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ void	draw_ractangle(t_cub *cub, int posy, int posx, int color)
 	j = posx;
 	while (posy <= i + 32)
 	{
+		posx = j;
 		while (posx <= j + 32)
 		{
-			mlx_pixel_put(cub->mlx_p, cub->mlx_w, posy, posx, color);
+			mlx_pixel_put(cub->mlx_p, cub->mlx_w, posx, posy, color);
 			posx++;
 		}
 		posy++;
@@ -66,6 +67,8 @@ int	main(int ac, char **av)
 	cub.mlx_w = mlx_new_window(cub.mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
 	// import_texture(&cub);
 	draw_mmap(&cub);
+	// draw_ractangle(&cub, 32, 32, 0x34e2e2);
+
 	mlx_loop(cub.mlx_p);
 	return (0);
 }
