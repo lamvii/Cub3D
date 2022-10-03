@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:42:53 by ael-idri          #+#    #+#             */
-/*   Updated: 2021/11/21 02:37:56 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:31:27 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 	dest[i] = '\0';
 	return (dest);
 }
-
+#include <stdio.h>
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char		*str;
@@ -46,5 +46,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!ret)
 		return (NULL);
 	ft_strncpy(ret, str + start, len);
+	// printf(">>%s\n", ret);
 	return (ret);
 }

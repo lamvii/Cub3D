@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 13:56:30 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:23:47 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,12 @@ int	main(int ac, char **av)
 	// import_texture(&cub);
 	draw_mmap(&cub);
 	// draw_ractangle(&cub, 32, 32, 0x34e2e2);
-
 	mlx_loop(cub.mlx_p);
+	free__tab(&data.o_map);
+	free(&data.map);
+	free(data.no);
+	free(data.ea);
+	free(data.we);
+	free(data.so);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:07:11 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 13:55:56 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:42:40 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*str_refine(char *str, int width)
 	int		i;
 
 	i = 0;
+	puts("dsf");
 	if (width - (int)ft_strlen_n(str) == 0)
 		return (ft_substr(str, 0, ft_strlen_n(str)));
 	spacestr = (char *)malloc(sizeof(char) * (width - (int)ft_strlen_n(str) + 1));
@@ -39,6 +40,7 @@ char	*str_refine(char *str, int width)
 	tmp = ft_strjoin(trim_nline, spacestr);
 	free(trim_nline);
 	free(spacestr);
+	puts("123");
 	return (tmp);
 }
 
@@ -49,12 +51,12 @@ bool	init_playermap(t_data *data)
 	i = 0;
 	data->mhight = tab__length(data->o_map + 6);
 	data->mwidth = max_width(data->o_map + 6);
-	data->map = (char **)malloc(sizeof(char *) * data->mhight);
+	data->map = (char **)malloc(sizeof(char *) * (data->mhight + 1));
 	if (!data->map)
 		return (false);
 	while (i < data->mhight)
 	{
-			printf("alo\n");
+		printf("alo\n");
 		data->map[i] = str_refine(data->o_map[i + 6], data->mwidth);
 		if (!data->map[i])
 			return (false);
