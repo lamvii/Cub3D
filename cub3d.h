@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/01 21:32:35 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:52:32 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ bool	check_range(int n);
 int		check_length(char **tab);
 int		max_width(char **str);
 bool	check_xpm(char *str);
+int		ft_strlen_n(const char *s);
 
 //utils2.c
 bool	is_player(char c);

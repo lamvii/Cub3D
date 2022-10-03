@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/09/30 14:09:07 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:53:09 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,31 @@ int	check_length(char **tab)
 	return (i);
 }
 
+int	ft_strlen_n(const char *s)
+{
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	if (!s)
+		return (0);
+	str = (char *)s;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
+}
+
 int	max_width(char **str)
 {
 	int		i;
-	size_t	max;
+	int		max;
 
 	i = 0;
 	max = 0;
 	while (str[i])
 	{
-		if (ft_strlen(str[i]) > max)
-			max = ft_strlen(str[i]);
+		if (ft_strlen_n(str[i]) > max)
+			max = ft_strlen_n(str[i]);
 		i++;
 	}
 	return (max);

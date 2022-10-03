@@ -6,11 +6,18 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:07:11 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/01 21:32:15 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:55:56 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+char	*trim_n_line(char *str)
+{
+	if (str[ft_strlen(str) - 1] == '\n')
+		return (ft_substr(str, 0, ft_strlen(str) - 1));
+	return (ft_strdup(str));
+}
 
 char	*str_refine(char *str, int width)
 {
@@ -20,15 +27,15 @@ char	*str_refine(char *str, int width)
 	int		i;
 
 	i = 0;
-	if (width - (int)ft_strlen(str) == 0)
-		return (ft_substr(str, 0, ft_strlen(str) - 1));
-	spacestr = (char *)malloc(sizeof(char) * (width - (int)ft_strlen(str)+ 1));
+	if (width - (int)ft_strlen_n(str) == 0)
+		return (ft_substr(str, 0, ft_strlen_n(str)));
+	spacestr = (char *)malloc(sizeof(char) * (width - (int)ft_strlen_n(str) + 1));
 	if (!spacestr)
 		return (NULL);
-	while (i < (width - (int)ft_strlen(str)))
+	while (i < (width - (int)ft_strlen_n(str)))
 		spacestr[i++] = ' ';
 	spacestr[i] = '\0';
-	trim_nline = ft_substr(str, 0, ft_strlen(str) - 1);
+	trim_nline = trim_n_line(str);
 	tmp = ft_strjoin(trim_nline, spacestr);
 	free(trim_nline);
 	free(spacestr);
@@ -47,6 +54,7 @@ bool	init_playermap(t_data *data)
 		return (false);
 	while (i < data->mhight)
 	{
+			printf("alo\n");
 		data->map[i] = str_refine(data->o_map[i + 6], data->mwidth);
 		if (!data->map[i])
 			return (false);
