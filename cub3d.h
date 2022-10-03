@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 13:52:32 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 19:23:00 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,23 @@ typedef struct s_tex
 	void	*wall;
 }			t_tex;
 
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_img;
+
 typedef struct s_cub
 {
 	t_data	*data;
+	double	px;
+	double	py;
 	void	*mlx_p;
 	void	*mlx_w;
+	t_img	img;
 	t_tex	*wall_no;
 	t_tex	*wall_so;
 	t_tex	*wall_we;
@@ -83,10 +95,12 @@ bool	check_range(int n);
 int		check_length(char **tab);
 int		max_width(char **str);
 bool	check_xpm(char *str);
-int		ft_strlen_n(const char *s);
 
 //utils2.c
 bool	is_player(char c);
+int		ft_strlen_n(const char *s);
+bool	check_zero_sides(char **player_map, int i, int j);
+char	*trim_n_line(char *str);
 
 //		read_map.c
 bool	check_in(char *str);
@@ -104,10 +118,17 @@ bool	check_assets(t_data *data);
 
 //		check_playermap.c
 bool	check_player_map(t_data *data);
-bool	check_zero_sides(char **player_map, int i, int j);
+bool	pmap_valid(t_data	*data);
+bool	check_map_elem(int *player_nb, t_data *data, int i, int j);
+bool	init_playermap(t_data *data);
+char	*str_refine(char *str, int width);
 
 //		map_checker.c
 void	init_data(t_data *data);
 bool	check_map(char *str, t_data *data);
+
+//		mini_map.c
+void	draw_mmap(t_cub *cub);
+void	draw_ractangle(t_cub *cub, int posy, int posx, int color);
 
 #endif

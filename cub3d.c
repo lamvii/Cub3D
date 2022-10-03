@@ -6,55 +6,39 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 14:23:47 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 19:40:55 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_ractangle(t_cub *cub, int posy, int posx, int color)
+void	img_pix_put(t_img *img, int x, int y, int color)
 {
-	int	i;
-	int	j;
+	char	*pixel;
 
-	i = posy;
-	j = posx;
-	while (posy <= i + 10)
-	{
-		posx = j;
-		while (posx <= j + 10)
-		{
-			mlx_pixel_put(cub->mlx_p, cub->mlx_w, posx, posy, color);
-			posx++;
-		}
-		posy++;
-	}
+	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(int *)pixel = color;
 }
 
-void	draw_mmap(t_cub *cub)
+void	setup_cub(t_cub	*cub, t_data *data)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (cub->data->map[++i])
-	{
-		j = -1;
-		while (cub->data->map[i][++j])
-		{
-			if (cub->data->map[i][j] == '1')
-				draw_ractangle(cub, i * 10, j * 10, 0x555753);
-			if (is_player(cub->data->map[i][j]))
-				draw_ractangle(cub, i * 10, j * 10, 0x34e2e2);
-		}
-	}
+	cub->data = data;
+	cub->mlx_p = mlx_init();
+	cub->px = data->px + 0.5;
+	cub->py = data->py + 0.5;
+	cub->data->map[data->py][data->px] = '0';
+	cub->mlx_w = mlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
+	cub->img.img_ptr = mlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
+	cub->img.addr = mlx_get_data_addr(cub->img.img_ptr, &cub->img.bpp,
+			&cub->img.line_len, &cub->img.endian);
+	draw_mmap(cub);
+	mlx_loop(cub->mlx_p);
 }
 
 int	main(int ac, char **av)
 {
 	t_data	data;
 	t_cub	cub;
-	int		i = 0;
 
 	if (ac != 2)
 	{
@@ -63,24 +47,19 @@ int	main(int ac, char **av)
 	}
 	if (!check_map(av[1], &data))
 		return (1);
-	while (data.map[i])
-	{
-		printf("|%s|\n", data.map[i]);
-		i++;
-	}
-	printf("hhh\n");
-	cub.data = &data;
-	cub.mlx_p = mlx_init();
-	cub.mlx_w = mlx_new_window(cub.mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
-	// import_texture(&cub);
-	draw_mmap(&cub);
-	// draw_ractangle(&cub, 32, 32, 0x34e2e2);
-	mlx_loop(cub.mlx_p);
-	free__tab(&data.o_map);
-	free(&data.map);
-	free(data.no);
-	free(data.ea);
-	free(data.we);
-	free(data.so);
+	setup_cub(&cub, &data);
+	
+	// while (data.map[i])
+	// {
+	// 	printf("|%s|\n", data.map[i]);
+	// 	i++;
+	// }
+
+	// free__tab(&data.o_map);
+	// free(&data.map);
+	// free(data.no);
+	// free(data.ea);
+	// free(data.we);
+	// free(data.so);
 	return (0);
 }

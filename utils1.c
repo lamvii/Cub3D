@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:26:53 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/03 13:53:09 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 18:33:21 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,6 @@ int	check_length(char **tab)
 
 	i = 0;
 	while (tab[i])
-		i++;
-	return (i);
-}
-
-int	ft_strlen_n(const char *s)
-{
-	size_t	i;
-	char	*str;
-
-	i = 0;
-	if (!s)
-		return (0);
-	str = (char *)s;
-	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
 }

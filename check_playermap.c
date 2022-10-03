@@ -6,18 +6,11 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 22:07:11 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 14:42:40 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/03 19:37:41 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-char	*trim_n_line(char *str)
-{
-	if (str[ft_strlen(str) - 1] == '\n')
-		return (ft_substr(str, 0, ft_strlen(str) - 1));
-	return (ft_strdup(str));
-}
 
 char	*str_refine(char *str, int width)
 {
@@ -27,20 +20,18 @@ char	*str_refine(char *str, int width)
 	int		i;
 
 	i = 0;
-	puts("dsf");
 	if (width - (int)ft_strlen_n(str) == 0)
 		return (ft_substr(str, 0, ft_strlen_n(str)));
-	spacestr = (char *)malloc(sizeof(char) * (width - (int)ft_strlen_n(str) + 1));
+	spacestr = (char *)malloc(sizeof(char) * (width - ft_strlen_n(str) + 1));
 	if (!spacestr)
 		return (NULL);
-	while (i < (width - (int)ft_strlen_n(str)))
+	while (i < (width - ft_strlen_n(str)))
 		spacestr[i++] = ' ';
 	spacestr[i] = '\0';
 	trim_nline = trim_n_line(str);
 	tmp = ft_strjoin(trim_nline, spacestr);
 	free(trim_nline);
 	free(spacestr);
-	puts("123");
 	return (tmp);
 }
 
@@ -56,7 +47,6 @@ bool	init_playermap(t_data *data)
 		return (false);
 	while (i < data->mhight)
 	{
-		printf("alo\n");
 		data->map[i] = str_refine(data->o_map[i + 6], data->mwidth);
 		if (!data->map[i])
 			return (false);
@@ -80,7 +70,7 @@ bool	check_map_elem(int *player_nb, t_data *data, int i, int j)
 		if (!check_zero_sides(data->map, i, j))
 			return (printf("player position !valid\n"), false);
 		data->px = j;
-		data->py = -i;
+		data->py = i;
 		if (data->map[i][j] == 'N')
 			data->rot_angle = 1.5 * M_PI;
 		if (data->map[i][j] == 'S')
