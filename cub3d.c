@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 19:40:55 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:33:02 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,18 @@ void	setup_cub(t_cub	*cub, t_data *data)
 {
 	cub->data = data;
 	cub->mlx_p = mlx_init();
+	if (!cub->mlx_p)
+	{
+		perror("Error");
+		exit(1);
+	}
 	cub->px = data->px + 0.5;
 	cub->py = data->py + 0.5;
 	cub->data->map[data->py][data->px] = '0';
-	cub->mlx_w = mlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
-	cub->img.img_ptr = mlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
+	cub->mlx_w = mlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");//protect
+	cub->img.img_ptr = mlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);//protect
 	cub->img.addr = mlx_get_data_addr(cub->img.img_ptr, &cub->img.bpp,
-			&cub->img.line_len, &cub->img.endian);
+			&cub->img.line_len, &cub->img.endian);//protect
 	draw_mmap(cub);
 	mlx_loop(cub->mlx_p);
 }
