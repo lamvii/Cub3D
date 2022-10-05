@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 18:23:57 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:53:10 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,24 @@ void	draw_ractangle(t_cub *cub, t_point p, int size, int color)
 	}
 }
 
-void	draw_rotation_line(t_cub *cub)
+void	draw_rotation_line(t_cub *cub, t_point point)
 {
-	int	i;
-	int	j;
+	int	a;
+	int	b;
 	int	x;
 	int	y;
+	int	k;
 
-	i = cub->py + (int)(fmod(cub->py, 1) * 10) * M_TILE;
-	j = cub->px + (int)(fmod(cub->px, 1) * 10) * M_TILE;
-	x = i + 10 * cos()
+	k = point.y;
+	x = cos(-2 * M_PI + cub->data->rot_angle) * 10 + point.x;
+	y = sin(-2 * M_PI + cub->data->rot_angle) * 10 + point.y;
+	a = (point.y - y) / (point.x - x);
+	b = y - a * x;
+	while (k)
+	{
+		/* code */;
+	}
+
 }
 
 // need to be focused on player
