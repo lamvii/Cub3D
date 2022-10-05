@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 18:16:57 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:25:07 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 
 # define CUBWIDTH 1000
 # define CUBHIGHT 1000
+# define M_TILE 30
 
 typedef struct s_data
 {
@@ -79,6 +80,8 @@ typedef struct s_cub
 	t_data	*data;
 	double	px;
 	double	py;
+	int		mstep; /*move_step */
+	double	rstep; /*rotation_step*/
 	void	*mlx_p;
 	void	*mlx_w;
 	t_img	img;

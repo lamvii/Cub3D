@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/05 16:52:41 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:07:05 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_hit_wall(t_cub *cub, int move)
 {
 	int	x;
 	int	y;
-	
+
 	x = cub->px + ft_right_left(move);
 	y = cub->py + ft_forward_back(move);
 
@@ -47,7 +47,7 @@ static void	player_move(t_cub *cub, int move)
 {
 	int	hit;
 
-	hit  = ft_hit_wall(cub, move);
+	hit = ft_hit_wall(cub, move);
 	if(hit == 1)
 		return ;
 	cub->px += ft_right_left(move);
@@ -55,6 +55,7 @@ static void	player_move(t_cub *cub, int move)
 	mlx_clear_window(cub->mlx_p, cub->mlx_w);
 	mlx_update_image(cub);
 	draw_mmap(cub);
+	draw_rotation_line(cub);
 	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }
 

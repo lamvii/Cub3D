@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 15:59:56 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:23:57 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	draw_ractangle(t_cub *cub, t_point p, int size, int color)
 	int	j;
 
 	if ((int)cub->py - 10 >= 0)
-		p.y -= ((int)cub->py - 10) * 30;
+		p.y -= ((int)cub->py - 10) * M_TILE;
 	if ((int)cub->px - 10 >= 0)
-		p.x -= ((int)cub->px - 10) * 30;
+		p.x -= ((int)cub->px - 10) * M_TILE;
 	i = p.y;
 	j = p.x;
 	while (p.y <= i + size)
@@ -35,6 +35,18 @@ void	draw_ractangle(t_cub *cub, t_point p, int size, int color)
 	}
 }
 
+void	draw_rotation_line(t_cub *cub)
+{
+	int	i;
+	int	j;
+	int	x;
+	int	y;
+
+	i = cub->py + (int)(fmod(cub->py, 1) * 10) * M_TILE;
+	j = cub->px + (int)(fmod(cub->px, 1) * 10) * M_TILE;
+	x = i + 10 * cos()
+}
+
 // need to be focused on player
 void	draw_mmap(t_cub *cub)
 {
@@ -43,11 +55,6 @@ void	draw_mmap(t_cub *cub)
 	int	miniwidth;
 	int	minihight;
 
-	if (!cub->img.img_ptr)
-	{
-		printf("error img ptr\n");
-		exit(1);
-	}
 	i = (int)cub->py - 10 - 1;
 	if (i < -1)
 		i = -1;
@@ -63,8 +70,9 @@ void	draw_mmap(t_cub *cub)
 			j = -1;
 		while (++j <= miniwidth && cub->data->map[i][j])
 			if (cub->data->map[i][j] == '1')
-				draw_ractangle(cub, (t_point){i * 30, j * 30}, 30, 0x555753);
+				draw_ractangle(cub, (t_point){i * M_TILE, j * M_TILE}, M_TILE, 0x555753);
 	}
-	draw_ractangle(cub, (t_point){((int)cub->py * 30) + ((int)(fmod(cub->py, 1.0) * 30)) - 5,
-		((int)cub->px * 30) + ((int)(fmod(cub->px, 1.0) * 30)) - 5}, 10, 0xFF);
+	draw_ractangle(cub,
+		(t_point){((int)cub->py * M_TILE) + ((int)(fmod(cub->py, 1.0) * M_TILE)) - 5,
+		((int)cub->px * M_TILE) + ((int)(fmod(cub->px, 1.0) * M_TILE)) - 5}, 10, 0xFF);
 }
