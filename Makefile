@@ -6,7 +6,7 @@
 #    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/03 19:21:39 by ael-idri         ###   ########.fr        #
+#    Updated: 2022/10/04 20:24:27 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,11 @@ CC			=	cc
 FLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
-				utils.c utils1.c utils2.c map_checker.c check_assets.c read_map.c cub3d.c \
-				check_playermap.c \
-				mini_map.c
+				parsing/utils.c parsing/utils1.c parsing/utils2.c \
+				parsing/map_checker.c parsing/check_assets.c  \
+				parsing/read_map.c parsing/check_playermap.c \
+				mini_map.c \
+				cub3d.c 
 OBJS		=	$(SRCS:.c=.o)
 HEADER		=	cub3d.h ./GNL/get_next_line.h ./libft/libft.h
 PATH_LIBFT 	=	libft/

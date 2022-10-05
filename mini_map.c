@@ -6,25 +6,30 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 21:43:41 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 09:41:15 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_ractangle(t_cub *cub, int posy, int posx, int color)
+void	draw_ractangle(t_cub *cub, int posy, int posx, int size, int color)
 {
 	int	i;
 	int	j;
 
+	if ((int)cub->py - 10 >= 0)
+		posy -= ((int)cub->py - 10) * 10;
+	if ((int)cub->px - 10 >= 0)
+		posx -= ((int)cub->py - 10) * 10;
 	i = posy;
 	j = posx;
-	while (posy <= i + 10)
+	printf("posx = %d posy= %d\n",posx, posy);
+	while (posy <= i + size)
 	{
 		posx = j;
-		while (posx <= j + 10)
+		while (posx <= j + size)
 		{
-			mlx_pixel_put(cub->mlx_p, cub->mlx_w, posx, posy, color);
+			img_pixel_put(cub->img, posx, posy, color);
 			posx++;
 		}
 		posy++;
@@ -36,17 +41,26 @@ void	draw_mmap(t_cub *cub)
 {
 	int	i;
 	int	j;
+	int	miniwidth;
+	int	minihight;
 
-	i = -1;
-	while (cub->data->map[++i])
-	{
+	i = (int)cub->py - 10 - 1;
+	if (i < -1)
+		i = -1;
+	j = (int)cub->px - 10 - 1;
+	if (j < -1)
 		j = -1;
-		while (cub->data->map[i][++j])
-		{
+	miniwidth = 22 + j;
+	minihight = 22 + i;
+	while (++i <= minihight && cub->data->map[i])
+	{
+		j = (int)cub->px - 10 - 1;
+		if (j < -1)
+			j = -1;
+		while (++j <= miniwidth && cub->data->map[i][j])
 			if (cub->data->map[i][j] == '1')
-				draw_ractangle(cub, i * 10, j * 10, 0x555753);
-			if (is_player(cub->data->map[i][j]))
-				draw_ractangle(cub, i * 10, j * 10, 0x34e2e2);
-		}
+				draw_ractangle(cub, i * 10, j * 10, 10, 0x555753);
 	}
+	draw_ractangle(cub, ((int)cub->py * 10) + ((int)fmod(cub->py, 1) * 10),
+		((int)cub->px * 10) + ((int)fmod(cub->px, 1) * 10), 4, 0xFF);
 }

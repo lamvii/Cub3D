@@ -3,3 +3,4 @@ fill map with spases with to longest length
 aloocate memory for str and comlete it with ' '
 relink libft
 creat func for init ptr of mlx
+check player pos && 4 borders ,for focus

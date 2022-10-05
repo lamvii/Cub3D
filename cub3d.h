@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/03 19:23:00 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:25:01 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define F 5
 # define C 6
 
-# define CUBWIDTH 640
-# define CUBHIGHT 420
+# define CUBWIDTH 1000
+# define CUBHIGHT 1000
 
 typedef struct s_data
 {
@@ -62,7 +62,7 @@ typedef struct s_tex
 typedef struct s_img
 {
 	void	*img_ptr;
-	char	*addr;
+	int		*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -82,53 +82,55 @@ typedef struct s_cub
 	t_tex	*wall_ea;
 }				t_cub;
 
-//		utils.c
+//		parsing/utils.c
 int		ft_type(char *str);
 char	*trim(char *str, char **dist);
 bool	ft_isdigit(char *str);
 void	free__tab(char ***tab);
 int		tab__length(char **map);
 
-//		utlis1.c
+//		parsing/utlis1.c
 bool	check_tab(int *tab);
 bool	check_range(int n);
 int		check_length(char **tab);
 int		max_width(char **str);
 bool	check_xpm(char *str);
 
-//utils2.c
+//		parsing/utils2.c
 bool	is_player(char c);
 int		ft_strlen_n(const char *s);
 bool	check_zero_sides(char **player_map, int i, int j);
 char	*trim_n_line(char *str);
 
-//		read_map.c
+//		parsing/read_map.c
 bool	check_in(char *str);
 bool	is_emptyline(char **line, int i);
 int		ft_open(char *file);
 char	**ft_realoc(char **tab, int size);
 bool	read_map(char *file, t_data *data);
 
-//		check_assets.c
+//		parsing/check_assets.c
 bool	get_texture(t_data *data, int type, int index);
 bool	parse_color(t_data *data, int index, char flag);
 bool	get_colors(t_data *data, int type, int index);
 bool	parse_assets(t_data *data);
 bool	check_assets(t_data *data);
 
-//		check_playermap.c
+//		parsing/check_playermap.c
 bool	check_player_map(t_data *data);
 bool	pmap_valid(t_data	*data);
 bool	check_map_elem(int *player_nb, t_data *data, int i, int j);
 bool	init_playermap(t_data *data);
 char	*str_refine(char *str, int width);
 
-//		map_checker.c
+//		parsing/map_checker.c
 void	init_data(t_data *data);
 bool	check_map(char *str, t_data *data);
 
 //		mini_map.c
 void	draw_mmap(t_cub *cub);
-void	draw_ractangle(t_cub *cub, int posy, int posx, int color);
+void	draw_ractangle(t_cub *cub, int posy, int posx, int size, int color);
+
+void	img_pixel_put(t_img img, int x, int y, int color);
 
 #endif
