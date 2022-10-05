@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 14:04:18 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:59:56 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	draw_ractangle(t_cub *cub, t_point p, int size, int color)
 	int	i;
 	int	j;
 
-	// printf("%d -- %d\n",p.y,p.x);
 	if ((int)cub->py - 10 >= 0)
 		p.y -= ((int)cub->py - 10) * 30;
 	if ((int)cub->px - 10 >= 0)
@@ -44,15 +43,11 @@ void	draw_mmap(t_cub *cub)
 	int	miniwidth;
 	int	minihight;
 
-	mlx_destroy_image(cub->mlx_p, cub->img.img_ptr);
-	cub->img.img_ptr = mlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
 	if (!cub->img.img_ptr)
 	{
 		printf("error img ptr\n");
 		exit(1);
 	}
-	cub->img.addr = (int *)mlx_get_data_addr(cub->img.img_ptr, &cub->img.bpp,
-			&cub->img.line_len, &cub->img.endian);
 	i = (int)cub->py - 10 - 1;
 	if (i < -1)
 		i = -1;
@@ -72,5 +67,4 @@ void	draw_mmap(t_cub *cub)
 	}
 	draw_ractangle(cub, (t_point){((int)cub->py * 30) + ((int)(fmod(cub->py, 1.0) * 30)) - 5,
 		((int)cub->px * 30) + ((int)(fmod(cub->px, 1.0) * 30)) - 5}, 10, 0xFF);
-	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }

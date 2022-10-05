@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 15:06:44 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:06:21 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,16 +143,17 @@ bool	check_map(char *str, t_data *data);
 void	draw_mmap(t_cub *cub);
 void	draw_ractangle(t_cub *cub, t_point p, int size, int color);
 
+//		image_handling.c
 void	img_pixel_put(t_img img, int x, int y, int color);
 
+//		moving_player.c
+int		key_hook(int keycode, void *pram);
 
-
-void	movement(t_cub *map);
-
-//mlx/_mlx.c
+//		mlx/_mlx.c
 void	*mmlx_init(void);
-int	*mmlx_img_ptr( t_cub *cub);
+int		*mmlx_img_ptr( t_cub *cub);
 void	*mmlx_new_image(void *mlx_ptr, int size_x, int size_y);
 void	*mmlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
+void	mlx_update_image(t_cub *cub);
 
 #endif

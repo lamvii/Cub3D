@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 15:05:24 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:07:50 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-int	loop_hook(void *param)
-{
-	t_cub	*cub;
-
-	cub = (t_cub *)param;
-	mlx_clear_window(cub->mlx_p, cub->mlx_w);
-	draw_mmap(cub);
-	return (0);
-}
 //protect
 void	img_pixel_put(t_img img, int x, int y, int color)
 {
@@ -35,16 +26,22 @@ void	setup_player(t_cub *cub)
 	cub->data->map[cub->data->py][cub->data->px] = '0';
 }
 
+void	setup_img(t_cub *cub)
+{
+	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
+	cub->img.addr = mmlx_img_ptr(cub);
+}
+
 void	setup_cub(t_cub	*cub, t_data *data)
 {
 	cub->data = data;
 	cub->mlx_p = mmlx_init();
-	//setup colors
+	// setup_color(cub);
 	setup_player(cub);
+	setup_img(cub);
 	cub->mlx_w = mmlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
-	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
-	cub->img.addr = mmlx_img_ptr(cub);
 	draw_mmap(cub);
+	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }
 
 int	main(int ac, char **av)
@@ -60,15 +57,9 @@ int	main(int ac, char **av)
 	if (!check_map(av[1], &data))
 		return (1);
 	setup_cub(&cub, &data);
-	// while (data.map[i])
-	// {
-	// 	printf("|%s|\n", data.map[i]);
-	// 	i++;
-	// }
-	draw_mmap(&cub);
-	movement(&cub);
-	mlx_loop_hook(cub.mlx_p,loop_hook,&cub);
+	mlx_hook(cub.mlx_w, 2, 0, key_hook, &cub);
 	mlx_loop(&cub.mlx_p);
+
 
 	// free__tab(&data.o_map);
 	// free(&data.map);
