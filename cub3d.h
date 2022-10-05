@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 11:07:32 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 13:06:35 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 # define EA 4
 # define F 5
 # define C 6
+
+# define ESC 53
+# define W  13
+# define A 0
+# define S 1
+# define D 2
 
 # define CUBWIDTH 1000
 # define CUBHIGHT 1000
@@ -138,5 +144,9 @@ void	draw_mmap(t_cub *cub);
 void	draw_ractangle(t_cub *cub, t_point p, int size, int color);
 
 void	img_pixel_put(t_img img, int x, int y, int color);
+
+
+
+void	movement(t_cub *map);
 
 #endif

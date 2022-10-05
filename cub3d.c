@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/04 18:27:44 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:00:08 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+
+int	loop_hook(void *param)
+{
+	t_cub	*cub;
+
+	cub = (t_cub *)param;
+	mlx_clear_window(cub->mlx_p, cub->mlx_w);
+	draw_mmap(cub);
+	return (0);
+}
 //protect
 void	img_pixel_put(t_img img, int x, int y, int color)
 {
@@ -30,7 +40,7 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	//setup colors
 	cub->px = data->px + 0.5;
 	cub->py = data->py + 0.5;
-	cub->data->map[data->py][data->px] = '0';
+	// cub->data->map[data->py][data->px] = '0';
 	cub->mlx_w = mlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
 	cub->img.img_ptr = mlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
 	if (!cub->img.img_ptr)
@@ -61,7 +71,9 @@ int	main(int ac, char **av)
 	// 	printf("|%s|\n", data.map[i]);
 	// 	i++;
 	// }
-	mlx_put_image_to_window(cub.mlx_p, cub.mlx_w, cub.img.img_ptr, 0, 0);
+	draw_mmap(&cub);
+	movement(&cub);
+	mlx_loop_hook(cub.mlx_p,loop_hook,&cub);
 	mlx_loop(&cub.mlx_p);
 
 	// free__tab(&data.o_map);
