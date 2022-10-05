@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:26:45 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 16:57:53 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:15:46 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,6 @@ int	*mmlx_get_data_addr( t_cub *cub)
 	}
 	return (img_addr);
 }
-
-// mmlx_destroy_image
-// mmlx_destroy_window
-// mmlx_get_data_addr
-// mlx_put_image_to_window
 
 void	mlx_update_image(t_cub *cub)
 {
