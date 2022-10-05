@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/04 20:25:01 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:07:32 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,12 @@ typedef struct s_cub
 	t_tex	*wall_ea;
 }				t_cub;
 
+typedef struct s_point
+{
+	int	y;
+	int	x;
+}				t_point;
+
 //		parsing/utils.c
 int		ft_type(char *str);
 char	*trim(char *str, char **dist);
@@ -129,7 +135,7 @@ bool	check_map(char *str, t_data *data);
 
 //		mini_map.c
 void	draw_mmap(t_cub *cub);
-void	draw_ractangle(t_cub *cub, int posy, int posx, int size, int color);
+void	draw_ractangle(t_cub *cub, t_point p, int size, int color);
 
 void	img_pixel_put(t_img img, int x, int y, int color);
 
