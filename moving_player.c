@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/05 16:51:57 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:52:41 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_hit_wall(t_cub *cub, int move)
 	x = cub->px + ft_right_left(move);
 	y = cub->py + ft_forward_back(move);
 
-	if (cub->data->map[x][y]  == '1')
+	if (cub->data->map[y][x]  == '1')
 		return (1);
 	return (0);
 }
