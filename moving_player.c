@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moving_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/05 16:06:03 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:51:57 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	ft_forward_back(int move)
-{
-	if (move == W)
-		return (-1);
-	if (move == S)
-		return (1);
-	return (0);
-}
 
 int	ft_right_left(int move)
 {
@@ -30,15 +21,41 @@ int	ft_right_left(int move)
 	return (0);
 }
 
-static int	player_move(t_cub *cub, int move)
+int	ft_forward_back(int move)
 {
-	cub->py += ft_forward_back(move);
+	if (move == W)
+		return (-1);
+	if (move == S)
+		return (1);
+	return (0);
+}
+
+int	ft_hit_wall(t_cub *cub, int move)
+{
+	int	x;
+	int	y;
+	
+	x = cub->px + ft_right_left(move);
+	y = cub->py + ft_forward_back(move);
+
+	if (cub->data->map[x][y]  == '1')
+		return (1);
+	return (0);
+}
+
+static void	player_move(t_cub *cub, int move)
+{
+	int	hit;
+
+	hit  = ft_hit_wall(cub, move);
+	if(hit == 1)
+		return ;
 	cub->px += ft_right_left(move);
+	cub->py += ft_forward_back(move);
 	mlx_clear_window(cub->mlx_p, cub->mlx_w);
 	mlx_update_image(cub);
 	draw_mmap(cub);
 	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
-	return (0);
 }
 
 int	key_hook(int keycode, void *pram)
@@ -52,7 +69,6 @@ int	key_hook(int keycode, void *pram)
 		&& keycode != D)
 		return (1);
 		//why
-	if (player_move(cub, keycode) == 1)
-		exit (0);
+	player_move(cub, keycode);
 	return (0);
 }
