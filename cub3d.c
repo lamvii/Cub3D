@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 16:43:08 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:57:03 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	setup_player(t_cub *cub)
 void	setup_img(t_cub *cub)
 {
 	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
-	cub->img.addr = mmlx_img_ptr(cub);
+	cub->img.addr = mmlx_get_data_addr(cub);
 }
 
 void	setup_cub(t_cub	*cub, t_data *data)

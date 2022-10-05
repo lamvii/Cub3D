@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 16:06:21 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:57:11 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int		key_hook(int keycode, void *pram);
 
 //		mlx/_mlx.c
 void	*mmlx_init(void);
-int		*mmlx_img_ptr( t_cub *cub);
+int		*mmlx_get_data_addr( t_cub *cub);
 void	*mmlx_new_image(void *mlx_ptr, int size_x, int size_y);
 void	*mmlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
 void	mlx_update_image(t_cub *cub);
