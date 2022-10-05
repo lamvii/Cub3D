@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/05 14:06:05 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:08:29 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int key_hook(int keycode, void *pram)
 {
 	t_cub *cub;
 
-	printf("sdfsd\n");
 	cub = (t_cub *)pram;
 	if (keycode == ESC)
 	{

@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 13:06:35 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:06:44 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,11 @@ void	img_pixel_put(t_img img, int x, int y, int color);
 
 
 void	movement(t_cub *map);
+
+//mlx/_mlx.c
+void	*mmlx_init(void);
+int	*mmlx_img_ptr( t_cub *cub);
+void	*mmlx_new_image(void *mlx_ptr, int size_x, int size_y);
+void	*mmlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
 
 #endif

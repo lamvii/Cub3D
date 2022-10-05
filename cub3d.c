@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 14:34:33 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:05:24 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,9 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	cub->mlx_p = mmlx_init();
 	//setup colors
 	setup_player(cub);
-	cub->mlx_w = mlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
-	cub->img.img_ptr = mlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
-	if (!cub->img.img_ptr)
-	{
-		printf("error img ptr\n");
-		exit(1);
-	}
-	cub->img.addr = (int *)mlx_get_data_addr(cub->img.img_ptr, &cub->img.bpp,
-			&cub->img.line_len, &cub->img.endian);
+	cub->mlx_w = mmlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
+	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
+	cub->img.addr = mmlx_img_ptr(cub);
 	draw_mmap(cub);
 }
 
