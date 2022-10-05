@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 09:41:15 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/05 09:53:42 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ void	draw_ractangle(t_cub *cub, int posy, int posx, int size, int color)
 	if ((int)cub->py - 10 >= 0)
 		posy -= ((int)cub->py - 10) * 10;
 	if ((int)cub->px - 10 >= 0)
-		posx -= ((int)cub->py - 10) * 10;
+		posx -= ((int)cub->px - 10) * 10;
 	i = posy;
 	j = posx;
-	printf("posx = %d posy= %d\n",posx, posy);
 	while (posy <= i + size)
 	{
 		posx = j;
