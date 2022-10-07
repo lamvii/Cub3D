@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 18:53:10 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:33:06 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,40 @@ void	draw_ractangle(t_cub *cub, t_point p, int size, int color)
 	}
 }
 
-void	draw_rotation_line(t_cub *cub, t_point point)
+void	bresenhams_line(t_cub *cub, t_point player, t_point end)
 {
-	int	a;
-	int	b;
 	int	x;
 	int	y;
-	int	k;
+	int	dx;
+	int	dy;
+	int	p;
 
-	k = point.y;
-	x = cos(-2 * M_PI + cub->data->rot_angle) * 10 + point.x;
-	y = sin(-2 * M_PI + cub->data->rot_angle) * 10 + point.y;
-	a = (point.y - y) / (point.x - x);
-	b = y - a * x;
-	while (k)
+	if ((int)cub->px - 10 >= 0)
 	{
-		/* code */;
+		player.x -= ((int)cub->px - 10) * M_TILE;
+		end.x -= ((int)cub->px - 10) * M_TILE;
 	}
-
+	if ((int)cub->py - 10 >= 0)
+	{
+		player.y -= ((int)cub->py - 10) * M_TILE;
+		end.y -= ((int)cub->py - 10) * M_TILE;
+	}	
+	x = player.x;
+	y = end.x;
+	dx = end.x - player.x;
+	dy = end.y - player.y;
+	while (x < end.x)
+	{
+		img_pixel_put(cub->img, x, y, 0xFF00);
+		x++;
+		if (p < 0)
+			p = p + 2 * dy;
+		else
+		{
+			p = p + 2 * dy -2 * dx;
+			y++;
+		}
+	}
 }
 
 // need to be focused on player
@@ -62,6 +78,8 @@ void	draw_mmap(t_cub *cub)
 	int	j;
 	int	miniwidth;
 	int	minihight;
+	t_point	player;
+	t_point	end;
 
 	i = (int)cub->py - 10 - 1;
 	if (i < -1)
@@ -81,6 +99,11 @@ void	draw_mmap(t_cub *cub)
 				draw_ractangle(cub, (t_point){i * M_TILE, j * M_TILE}, M_TILE, 0x555753);
 	}
 	draw_ractangle(cub,
-		(t_point){((int)cub->py * M_TILE) + ((int)(fmod(cub->py, 1.0) * M_TILE)) - 5,
-		((int)cub->px * M_TILE) + ((int)(fmod(cub->px, 1.0) * M_TILE)) - 5}, 10, 0xFF);
+		(t_point){((int)cub->py * M_TILE) + ((int)(fmod(cub->py, 1) * M_TILE)) - 5,
+		((int)cub->px * M_TILE) + ((int)(fmod(cub->px, 1) * M_TILE)) - 5}, 10, 0xFF);
+	player = (t_point){(cub->py + (int)(fmod(cub->py, 1) * 10)) * M_TILE,
+		(cub->px + (int)(fmod(cub->px, 1) * 10)) * M_TILE};
+	end = (t_point){sin(-2 * M_PI + cub->data->rot_angle) * 200 + player.y,
+		cos(-2 * M_PI + cub->data->rot_angle) * 200 + player.x};
+	bresenhams_line(cub, player, end);
 }

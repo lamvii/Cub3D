@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 18:25:07 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:41:18 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ bool	check_map(char *str, t_data *data);
 
 //		mini_map.c
 void	draw_mmap(t_cub *cub);
+void	bresenhams_line(t_cub *cub, t_point player, t_point end);
 void	draw_ractangle(t_cub *cub, t_point p, int size, int color);
 
 //		image_handling.c

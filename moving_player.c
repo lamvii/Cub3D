@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/05 18:42:19 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:09:53 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	ft_hit_wall(t_cub *cub, int move)
 
 	x = cub->px + ft_right_left(move);
 	y = cub->py + ft_forward_back(move);
-
 	if (cub->data->map[y][x]  == '1')
 		return (1);
 	return (0);
@@ -45,7 +44,7 @@ int	ft_hit_wall(t_cub *cub, int move)
 
 static void	player_move(t_cub *cub, int move)
 {
-	int	hit;
+	int		hit;
 
 	hit = ft_hit_wall(cub, move);
 	if (hit == 1)
@@ -55,8 +54,7 @@ static void	player_move(t_cub *cub, int move)
 	mlx_clear_window(cub->mlx_p, cub->mlx_w);
 	mlx_update_image(cub);
 	draw_mmap(cub);
-	draw_line(cub, (t_point){(cub->py + (int)(fmod(cub->py, 1) * 10)) * M_TILE,
-		(cub->px + (int)(fmod(cub->px, 1) * 10)) * M_TILE});
+
 	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }
 
