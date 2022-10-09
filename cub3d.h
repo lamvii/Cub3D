@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/09 17:47:58 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/09 22:03:41 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@
 # define ARROW_L 123
 # define ARROW_R 124
 
- 
 # define CUBWIDTH 1000
 # define CUBHIGHT 1000
-# define M_TILE 10
+# define M_TILE 30
 
 typedef struct s_data
 {
@@ -69,6 +68,12 @@ typedef struct s_tex
 	void	*wall;
 }			t_tex;
 
+typedef struct s_point
+{
+	double	y;
+	double	x;
+}				t_point;
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -80,25 +85,18 @@ typedef struct s_img
 
 typedef struct s_cub
 {
-	t_data	*data;
-	double	px;
-	double	py;
-	double	mstep; /*move_step */
-	double	rstep; /*rotation_step*/
-	void	*mlx_p;
-	void	*mlx_w;
-	t_img	img;
-	t_tex	*wall_no;
-	t_tex	*wall_so;
-	t_tex	*wall_we;
-	t_tex	*wall_ea;
+	t_data		*data;
+	t_point		player;
+	double		mstep; /*move_step */
+	double		rstep; /*rotation_step*/
+	void		*mlx_p;
+	void		*mlx_w;
+	t_img		img;
+	t_tex		*wall_no;
+	t_tex		*wall_so;
+	t_tex		*wall_we;
+	t_tex		*wall_ea;
 }				t_cub;
-
-typedef struct s_point
-{
-	int	y;
-	int	x;
-}				t_point;
 
 //		parsing/utils.c
 int		ft_type(char *str);

@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:47:14 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/04 20:31:55 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/09 21:20:36 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int main() {
 	// mlx_put_image_to_window(mlx, win, img, 0, 0);
 	// mlx_loop(mlx);
 	double i = 18.2356;
-	printf ("%d\n", (int)(fmod(i, 1) * 10));
+	printf ("%d--- %d\n", 18 * 10 + (int)(fmod(i, 1) * 10), );
 }

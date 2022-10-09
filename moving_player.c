@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/09 17:56:08 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/09 22:56:40 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,28 @@
 // 	return (0);
 // }
 
-void	ft_forward_back(int keycode, t_cub *cub)
+void	move_switch_direction(int keycode, t_cub *cub)
 {
 	if (keycode == W)
 	{
-		cub->px += cos(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
-		cub->py += sin(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
+		cub->player.x += cos(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
+		cub->player.y += sin(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
 	}
 	if (keycode == S)
 	{
-		cub->px -= cos(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
-		cub->py -= sin(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
+		cub->player.x -= cos(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
+		cub->player.y -= sin(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
 	}
-
+	if (keycode == D)
+	{
+		cub->player.x += cos(-1.5 * M_PI + cub->data->rot_angle) * cub->mstep;
+		cub->player.y += sin(-1.5 * M_PI + cub->data->rot_angle) * cub->mstep;
+	}
+	if (keycode == A)
+	{
+		cub->player.x += cos(-2.5 * M_PI + cub->data->rot_angle) * cub->mstep;
+		cub->player.y += sin(-2.5 * M_PI + cub->data->rot_angle) * cub->mstep;
+	}
 }
 
 // int	ft_hit_wall(t_cub *cub, int keycode)
@@ -50,13 +59,7 @@ void	ft_forward_back(int keycode, t_cub *cub)
 
 void	player_move(t_cub *cub, int keycode)
 {
-	// int		hit;
-
-	// hit = ft_hit_wall(cub, keycode);
-	// if (hit == 1)
-	// 	return ;
-	// cub->px += ft_right_left(keycode, cub);
-	ft_forward_back(keycode, cub);
+	move_switch_direction(keycode, cub);
 	mlx_clear_window(cub->mlx_p, cub->mlx_w);
 	mlx_update_image(cub);
 	draw_mmap(cub);

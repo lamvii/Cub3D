@@ -6,12 +6,11 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/09 17:45:51 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/09 22:05:12 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 //protect
 void	img_pixel_put(t_img img, int x, int y, int color)
@@ -21,8 +20,8 @@ void	img_pixel_put(t_img img, int x, int y, int color)
 
 void	setup_player(t_cub *cub)
 {
-	cub->px = cub->data->px + 0.5;
-	cub->py = cub->data->py + 0.5;
+	cub->player.x = cub->data->px + 0.5;
+	cub->player.y = cub->data->py + 0.5;
 	cub->rstep = (M_PI / 180) * 10;
 	cub->mstep = 0.3;
 	cub->data->map[cub->data->py][cub->data->px] = '0';
@@ -61,8 +60,6 @@ int	main(int ac, char **av)
 	setup_cub(&cub, &data);
 	mlx_hook(cub.mlx_w, 2, 0, key_hook, &cub);
 	mlx_loop(&cub.mlx_p);
-
-
 	// free__tab(&data.o_map);
 	// free(&data.map);
 	// free(data.no);
