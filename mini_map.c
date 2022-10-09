@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/07 16:33:06 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:48:35 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,10 @@ void	draw_ractangle(t_cub *cub, t_point p, int size, int color)
 	}
 }
 
-void	bresenhams_line(t_cub *cub, t_point player, t_point end)
-{
-	int	x;
-	int	y;
-	int	dx;
-	int	dy;
-	int	p;
-
+void put_line(t_cub *cub, t_point player, t_point end)
+{  
+    float x, y,dx,dy,steps;
+	int i;
 	if ((int)cub->px - 10 >= 0)
 	{
 		player.x -= ((int)cub->px - 10) * M_TILE;
@@ -52,22 +48,21 @@ void	bresenhams_line(t_cub *cub, t_point player, t_point end)
 	{
 		player.y -= ((int)cub->py - 10) * M_TILE;
 		end.y -= ((int)cub->py - 10) * M_TILE;
-	}	
-	x = player.x;
-	y = end.x;
-	dx = end.x - player.x;
-	dy = end.y - player.y;
-	while (x < end.x)
-	{
-		img_pixel_put(cub->img, x, y, 0xFF00);
-		x++;
-		if (p < 0)
-			p = p + 2 * dy;
-		else
-		{
-			p = p + 2 * dy -2 * dx;
-			y++;
-		}
+	}
+    dx = (float)(end.x - player.x);
+    dy = (float)(end.y - player.y);
+    steps = fmax(fabs(dy), fabs(dx));
+    dx = dx/steps;  
+    dy = dy/steps;  
+    x = player.x;
+    y = player.y;
+    i = 1;  
+    while(i<= steps)  
+    {  
+		img_pixel_put(cub->img, round(x),round(y), 0xFF00);
+        x += dx;  
+        y += dy;  
+        i++;  
 	}
 }
 
@@ -87,6 +82,7 @@ void	draw_mmap(t_cub *cub)
 	j = (int)cub->px - 10 - 1;
 	if (j < -1)
 		j = -1;
+	
 	miniwidth = 22 + j;
 	minihight = 22 + i;
 	while (++i <= minihight && cub->data->map[i])
@@ -96,14 +92,17 @@ void	draw_mmap(t_cub *cub)
 			j = -1;
 		while (++j <= miniwidth && cub->data->map[i][j])
 			if (cub->data->map[i][j] == '1')
+			{
 				draw_ractangle(cub, (t_point){i * M_TILE, j * M_TILE}, M_TILE, 0x555753);
+			}
 	}
 	draw_ractangle(cub,
-		(t_point){((int)cub->py * M_TILE) + ((int)(fmod(cub->py, 1) * M_TILE)) - 5,
-		((int)cub->px * M_TILE) + ((int)(fmod(cub->px, 1) * M_TILE)) - 5}, 10, 0xFF);
-	player = (t_point){(cub->py + (int)(fmod(cub->py, 1) * 10)) * M_TILE,
-		(cub->px + (int)(fmod(cub->px, 1) * 10)) * M_TILE};
-	end = (t_point){sin(-2 * M_PI + cub->data->rot_angle) * 200 + player.y,
-		cos(-2 * M_PI + cub->data->rot_angle) * 200 + player.x};
-	bresenhams_line(cub, player, end);
+		(t_point){((int)cub->py * M_TILE) + ((int)(fmod(cub->py, 1) * M_TILE)) - 2,
+		((int)cub->px * M_TILE) + ((int)(fmod(cub->px, 1) * M_TILE)) - 2}, 4, 0xFF);
+
+	player = (t_point){((int)cub->py * M_TILE) + ((int)(fmod(cub->py, 1) * M_TILE)) ,
+		((int)cub->px * M_TILE) + ((int)(fmod(cub->px, 1) * M_TILE)) };
+	end = (t_point){sin(-2 * M_PI + cub->data->rot_angle) * 2 + player.y,
+		cos(-2 * M_PI + cub->data->rot_angle) * 2 + player.x};
+	put_line(cub, player, end);
 }

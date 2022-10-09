@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 18:10:43 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:45:51 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	setup_player(t_cub *cub)
 {
 	cub->px = cub->data->px + 0.5;
 	cub->py = cub->data->py + 0.5;
-	cub->rstep = (M_PI / 180) * 3;
-	cub->mstep = 3;
+	cub->rstep = (M_PI / 180) * 10;
+	cub->mstep = 0.3;
 	cub->data->map[cub->data->py][cub->data->px] = '0';
 }
 
