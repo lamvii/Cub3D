@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/09 22:05:12 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/11 18:39:53 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ void	setup_cub(t_cub	*cub, t_data *data)
 {
 	cub->data = data;
 	cub->mlx_p = mmlx_init();
+	cub->fov = 60 * (M_PI / 180);
+	cub->rayangle = cub->fov / CUBWIDTH;
 	// setup_color(cub);
 	setup_player(cub);
 	setup_img(cub);
 	cub->mlx_w = mmlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
 	draw_mmap(cub);
+	draw_rays(*cub);
 	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }
 

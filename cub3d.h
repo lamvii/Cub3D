@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/09 22:03:41 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:54:14 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_cub
 	t_point		player;
 	double		mstep; /*move_step */
 	double		rstep; /*rotation_step*/
+	double		rayangle;
+	double		fov;
 	void		*mlx_p;
 	void		*mlx_w;
 	t_img		img;
@@ -147,6 +149,7 @@ bool	check_map(char *str, t_data *data);
 void	draw_mmap(t_cub *cub);
 void	bresenhams_line(t_cub *cub, t_point player, t_point end);
 void	draw_ractangle(t_cub *cub, t_point p, int size, int color);
+void	draw_rays(t_cub cub);
 
 //		image_handling.c
 void	img_pixel_put(t_img img, int x, int y, int color);
@@ -161,8 +164,9 @@ void	*mmlx_new_image(void *mlx_ptr, int size_x, int size_y);
 void	*mmlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
 void	mlx_update_image(t_cub *cub);
 //mlx/mlx1.c
-void	mmlx_destroy_image(void *mlx_ptr,void *img_ptr);
-void	mmlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
-void	mmlx_destroy_window(void *mlx_ptr,void *img_ptr);
+void	mmlx_destroy_image(void *mlx_ptr, void *img_ptr);
+void	mmlx_put_image_to_window(void *mlx_ptr, void *win_ptr,
+			void *img_ptr, int x, int y);
+void	mmlx_destroy_window(void *mlx_ptr, void *img_ptr);
 
 #endif
