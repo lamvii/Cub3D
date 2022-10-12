@@ -6,43 +6,91 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/11 14:58:24 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:58:11 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// void	ft_right_left(int keycode, t_cub *cub)
-// {
-// 	if (keycode == A)
-// 		return (-1);
-// 	if (keycode == D)
-// 		return (1);
-// 	return (0);
-// }
-
-void	move_switch_direction(int keycode, t_cub *cub)
+void	ft_right_left(int keycode, t_cub *cub)
 {
-	if (keycode == W)
-	{
-		cub->player.x += cos(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
-		cub->player.y += sin(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
-	}
-	if (keycode == S)
-	{
-		cub->player.x -= cos(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
-		cub->player.y -= sin(-2 * M_PI + cub->data->rot_angle) * cub->mstep;
-	}
+	t_point	intersection;
+	double	ray_distance;
+
 	if (keycode == D)
 	{
-		cub->player.x += cos(-1.5 * M_PI + cub->data->rot_angle) * cub->mstep;
-		cub->player.y += sin(-1.5 * M_PI + cub->data->rot_angle) * cub->mstep;
+		intersection = find_intersection(*cub,
+				fmod(M_PI_2 + cub->data->rot_angle, 2 * M_PI), &ray_distance);
+		printf("%f----%f\n",cub->mstep, ray_distance);
+		if (cub->mstep < ray_distance)
+		{
+			cub->player.x += cos(M_PI_2 + cub->data->rot_angle) * cub->mstep;
+			cub->player.y += sin(M_PI_2 + cub->data->rot_angle) * cub->mstep;
+			return ;
+		}
+		if (ray_distance <= 0.01)
+			return ;
+		ray_distance -= 0.01;
+		cub->player.x += cos(M_PI_2 + cub->data->rot_angle) * ray_distance;
+		cub->player.y += sin(M_PI_2 + cub->data->rot_angle) * ray_distance;
 	}
 	if (keycode == A)
 	{
-		cub->player.x += cos(-2.5 * M_PI + cub->data->rot_angle) * cub->mstep;
-		cub->player.y += sin(-2.5 * M_PI + cub->data->rot_angle) * cub->mstep;
+		intersection = find_intersection(*cub,
+				fmod(-M_PI_2 + cub->data->rot_angle, 2 * M_PI), &ray_distance);
+		printf("%f----%f\n",cub->mstep, ray_distance);
+		if (cub->mstep < ray_distance )
+		{
+			cub->player.x -= cos(M_PI_2 + cub->data->rot_angle) * cub->mstep;
+			cub->player.y -= sin(M_PI_2 + cub->data->rot_angle) * cub->mstep;
+			return ;
+		}
+		if (ray_distance <= 0.01)
+			return ;
+		ray_distance -= 0.01;
+		cub->player.x -= cos(M_PI_2 + cub->data->rot_angle) * ray_distance;
+		cub->player.y -= sin(M_PI_2 + cub->data->rot_angle) * ray_distance;
 	}
+}
+
+void	move_forward_back(int keycode, t_cub *cub)
+{
+	t_point	intersection;
+	double	ray_distance;
+
+	if (keycode == W)
+	{
+	intersection = find_intersection(*cub, fmod(cub->data->rot_angle, 2 * M_PI), &ray_distance);
+		printf("%f----%f\n",cub->mstep, ray_distance);
+		if (cub->mstep < ray_distance)
+		{
+			cub->player.x += cos(cub->data->rot_angle) * cub->mstep;
+			cub->player.y += sin(cub->data->rot_angle) * cub->mstep;
+			return ;
+		}
+		if (ray_distance <= 0.01)
+			return ;
+		ray_distance -= 0.01;
+		cub->player.x += cos(cub->data->rot_angle) * ray_distance;
+		cub->player.y += sin(cub->data->rot_angle) * ray_distance;
+	}
+	if (keycode == S)
+	{
+	intersection = find_intersection(*cub, fmod(cub->data->rot_angle - M_PI, 2 * M_PI), &ray_distance);
+		printf("%f----%f\n",cub->mstep, ray_distance);
+		if (cub->mstep < ray_distance)
+		{
+			cub->player.x -= cos(cub->data->rot_angle) * cub->mstep;
+			cub->player.y -= sin(cub->data->rot_angle) * cub->mstep;
+			return ;
+		}
+		if (ray_distance <= 0.01)
+			return ;
+		ray_distance -= 0.01;
+		cub->player.x -= cos(cub->data->rot_angle) * ray_distance;
+		cub->player.y -= sin(cub->data->rot_angle) * ray_distance;
+	}
+
 }
 
 // int	ft_hit_wall(t_cub *cub, int keycode)
@@ -59,7 +107,9 @@ void	move_switch_direction(int keycode, t_cub *cub)
 
 void	player_move(t_cub *cub, int keycode)
 {
-	move_switch_direction(keycode, cub);
+	// move_switch_direction(keycode, cub);
+	ft_right_left(keycode, cub);
+	move_forward_back(keycode, cub);
 	mlx_clear_window(cub->mlx_p, cub->mlx_w);
 	mlx_update_image(cub);
 	draw_mmap(cub);

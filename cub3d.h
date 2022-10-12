@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/11 14:54:14 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:59:02 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,13 @@ int		*mmlx_get_data_addr( t_cub *cub);
 void	*mmlx_new_image(void *mlx_ptr, int size_x, int size_y);
 void	*mmlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
 void	mlx_update_image(t_cub *cub);
+
 //mlx/mlx1.c
 void	mmlx_destroy_image(void *mlx_ptr, void *img_ptr);
 void	mmlx_put_image_to_window(void *mlx_ptr, void *win_ptr,
 			void *img_ptr, int x, int y);
 void	mmlx_destroy_window(void *mlx_ptr, void *img_ptr);
+
+t_point	find_intersection(t_cub cub, double alpha, double *distance);
 
 #endif
