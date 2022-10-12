@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/11 19:13:14 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:28:36 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ t_point	horizontal_intersection_up(t_cub cub, double alpha)
 	int		flag;
 
 	intersection = (t_point){(int)cub.player.y,
-		fmod(cub.player.y, 1) / tan(alpha) + cub.player.x};
-	variant_xy = (t_point){1, 1 / tan(alpha)};
+		-fmod(cub.player.y, 1) / tan(alpha) + cub.player.x};
+	variant_xy = (t_point){1, -1 / tan(alpha)};
 	flag = 1;
 	while (flag)
 	{
@@ -219,17 +219,14 @@ t_point	vertical_intersection_left(t_cub cub, double alpha)
 	t_point	variant_xy;
 	int		flag;
 
-	intersection = (t_point){fmod(cub.player.x, 1) * tan(alpha) + cub.player.y,
+	intersection = (t_point){-fmod(cub.player.x, 1) * tan(alpha) + cub.player.y,
 		(int)cub.player.x};
-	variant_xy = (t_point){tan(alpha), 1};
+	variant_xy = (t_point){-tan(alpha), -1};
 	flag = 1;
 	while (flag)
 	{
 		if (is_outside_map((int)intersection.y, (int)intersection.x - 1, cub.data->mhight, cub.data->mwidth))
-		{
-			puts("outsinde");
 			return (cub.player);
-		}
 		if (cub.data->map[(int)intersection.y][(int)intersection.x - 1] == '1')
 		{
 			flag = 0;
@@ -269,8 +266,8 @@ t_point	find_intersection(t_cub cub, int ray_id, double *distance)
 	double	hor_dist;
 	double	alpha;
 
-	alpha = -2 * M_PI + cub.data->rot_angle
-		- cub.fov / 2 + ray_id * cub.rayangle;
+	alpha = fmod(cub.data->rot_angle
+		- cub.fov / 2 + ray_id * cub.rayangle, 2 * M_PI);
 	horizontal = horizontal_intersection(cub, alpha, &hor_dist);
 	vertical = vertical_intersection(cub, alpha, &ver_dist);
 	if (hor_dist <= ver_dist)
