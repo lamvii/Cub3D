@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/11 18:39:53 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:52:38 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 //protect
 void	img_pixel_put(t_img img, int x, int y, int color)
 {
+	if (x > CUBWIDTH || y > CUBHIGHT || x < 0 || y < 0)
+		return ;
 	img.addr[x + (y * CUBWIDTH)] = color;
 }
 
@@ -23,7 +25,7 @@ void	setup_player(t_cub *cub)
 	cub->player.x = cub->data->px + 0.5;
 	cub->player.y = cub->data->py + 0.5;
 	cub->rstep = (M_PI / 180) * 10;
-	cub->mstep = 0.3;
+	cub->mstep = 0.5;
 	cub->data->map[cub->data->py][cub->data->px] = '0';
 }
 
@@ -39,6 +41,7 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	cub->mlx_p = mmlx_init();
 	cub->fov = 60 * (M_PI / 180);
 	cub->rayangle = cub->fov / CUBWIDTH;
+	cub->dist_projection_plane = (CUBWIDTH / 2) / tan(cub->fov / 2);
 	// setup_color(cub);
 	setup_player(cub);
 	setup_img(cub);

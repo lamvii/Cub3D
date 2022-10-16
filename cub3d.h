@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/12 18:59:02 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:55:40 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@
 # define ARROW_L 123
 # define ARROW_R 124
 
+# define M_TILE 10
 # define CUBWIDTH 1000
 # define CUBHIGHT 1000
-# define M_TILE 30
+# define CUB_TILE 32
 
 typedef struct s_data
 {
@@ -90,6 +91,7 @@ typedef struct s_cub
 	double		mstep; /*move_step */
 	double		rstep; /*rotation_step*/
 	double		rayangle;
+	double		dist_projection_plane;
 	double		fov;
 	void		*mlx_p;
 	void		*mlx_w;
