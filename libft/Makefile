@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/21 19:08:56 by ael-idri          #+#    #+#              #
-#    Updated: 2022/09/30 16:52:59 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/10/17 14:36:16 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ BONUS_OBJS	= 	$(BONUS:.c=.o)
 
 CC			=	cc
 
-CFLAGS    	=	-Wall -Werror -Wextra 
+CFLAGS    	=	-Wall -Werror -Wextra -ffast-math -Ofast -march=native
 
 AR			=	ar crs
 

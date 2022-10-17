@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/16 23:05:03 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:43:57 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,6 +329,5 @@ void	draw_rays(t_cub cub)
 		put_line(cub, (t_point){cub.player.y * M_TILE, cub.player.x * M_TILE},
 			(t_point){intersection.y * M_TILE, intersection.x * M_TILE});
 		ray_id++;
-		// puts("hi");
 	}
 }

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/05 15:07:19 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/10/17 14:36:11 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	 	=	cub3d
 CC			=	cc
-FLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -ffast-math -Ofast -march=native
 RM			=	rm -rf
 SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
 				parsing/utils.c parsing/utils1.c parsing/utils2.c \
@@ -33,12 +33,12 @@ $(LIBFT) :
 				@make -C $(PATH_LIBFT)
 
 $(NAME)		:	$(OBJS) $(HEADER) $(LIBFT)
-				${CC} ${FLAGS} ${OBJS} -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT)
+				${CC} ${CFLAGS} ${OBJS} -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT)
 
 
 
 %.o			:	%.c $(HEADER)
-				$(CC) ${FLAGS}  -c $< -o $@
+				$(CC) ${CFLAGS}  -c $< -o $@
     
 clean		:
 				$(RM) $(OBJS)
