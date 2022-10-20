@@ -6,13 +6,13 @@
 #    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/17 14:36:11 by ael-idri         ###   ########.fr        #
+#    Updated: 2022/10/19 15:32:55 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	 	=	cub3d
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -ffast-math -Ofast -march=native
+CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
 				parsing/utils.c parsing/utils1.c parsing/utils2.c \

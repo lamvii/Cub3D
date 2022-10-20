@@ -6,7 +6,7 @@
 #    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/21 19:08:56 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/17 14:36:16 by ael-idri         ###   ########.fr        #
+#    Updated: 2022/10/19 15:33:09 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ BONUS_OBJS	= 	$(BONUS:.c=.o)
 
 CC			=	cc
 
-CFLAGS    	=	-Wall -Werror -Wextra -ffast-math -Ofast -march=native
+CFLAGS    	=	-Wall -Werror -Wextra 
 
 AR			=	ar crs
 

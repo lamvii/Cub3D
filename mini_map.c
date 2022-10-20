@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/17 16:43:57 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:20:14 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	draw_mmap(t_cub *cub)
 	t_point	var;
 	int		miniwidth;
 	int		minihight;
-	// t_point	end;
 
 	var = (t_point){(int)cub->player.y - 11, (int)cub->player.x - 11};
 	if (var.y < -1)
@@ -105,9 +104,6 @@ void	draw_mmap(t_cub *cub)
 	}
 	draw_ractangle(cub, (t_point){(int)(cub->player.y * M_TILE) - 2,
 		(int)(cub->player.x * M_TILE) - 2}, 4, 0xFF);
-	// end = (t_point){sin(-2 * M_PI + cub->data->rot_angle) * 200 + cub->player.y * M_TILE,
-	// 	cos(-2 * M_PI + cub->data->rot_angle) * 200 + cub->player.x * M_TILE};
-	// put_line(cub, (t_point){cub->player.y * M_TILE, cub->player.x * M_TILE}, end);
 }
 
 bool	is_outside_map(int i, int j, int hight, int width)
@@ -282,12 +278,7 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 	int		skyhight;
 	int		len;
 	int		i;
-	// double	rayangle;
 
-	// rayangle = cub.fov / 2 - (ray_id * cub.rayangle);
-	// rayangle = fmod(rayangle, 2 * M_PI);
-	// if (rayangle < 0)
-	// 	rayangle += 2 * M_PI;
 	wall_hight = cub.dist_projection_plane
 		/ (ray_distance * cos(cub.fov / 2 - (ray_id * cub.rayangle)));
 	if (wall_hight > CUBHIGHT)
@@ -295,10 +286,8 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 	skyhight = (CUBHIGHT - wall_hight) / 2;
 	i = -1;
 	while (++i <= skyhight)
-		img_pixel_put(cub.img, ray_id, i, 0xF5FFFA);
+		img_pixel_put(cub.img, ray_id, i, cub.ceilling.color);
 	i = CUBHIGHT / 2 - wall_hight / 2;
-	// if (i < 0)
-	// 	i = 0;
 	len = CUBHIGHT / 2 + wall_hight / 2;
 	while (i < len)
 	{
@@ -307,7 +296,7 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 	}
 	while (i < CUBHIGHT)
 	{
-		img_pixel_put(cub.img, ray_id, i, 0xFFDEAD);
+		img_pixel_put(cub.img, ray_id, i, cub.floor.color);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/16 22:52:38 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/18 23:19:37 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	img_pixel_put(t_img img, int x, int y, int color)
 {
 	if (x > CUBWIDTH || y > CUBHIGHT || x < 0 || y < 0)
 		return ;
-	img.addr[x + (y * CUBWIDTH)] = color;
+		img.addr[x + (y * CUBWIDTH)] = color;
 }
 
 void	setup_player(t_cub *cub)
@@ -35,6 +35,24 @@ void	setup_img(t_cub *cub)
 	cub->img.addr = mmlx_get_data_addr(cub);
 }
 
+void	setup_color(int endian, unsigned char rgb[4], int color[4])
+{
+	if (!endian)
+	{
+		rgb[0] = (unsigned char)color[2];
+		rgb[1] = (unsigned char)color[1];
+		rgb[2] = (unsigned char)color[0];
+		rgb[3] = 0;
+	}
+	else
+	{
+		rgb[0] = 0;
+		rgb[1] = (unsigned char)color[0];
+		rgb[2] = (unsigned char)color[1];
+		rgb[3] = (unsigned char)color[2];
+	}
+}
+
 void	setup_cub(t_cub	*cub, t_data *data)
 {
 	cub->data = data;
@@ -42,12 +60,13 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	cub->fov = 60 * (M_PI / 180);
 	cub->rayangle = cub->fov / CUBWIDTH;
 	cub->dist_projection_plane = (CUBWIDTH / 2) / tan(cub->fov / 2);
-	// setup_color(cub);
 	setup_player(cub);
 	setup_img(cub);
+	setup_color(cub->img.endian, cub->ceilling.rgb, cub->data->c);
+	setup_color(cub->img.endian, cub->floor.rgb, cub->data->f);
 	cub->mlx_w = mmlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
-	draw_mmap(cub);
 	draw_rays(*cub);
+	draw_mmap(cub);
 	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }
 

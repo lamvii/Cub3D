@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/16 22:55:40 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/18 18:53:15 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ typedef struct s_data
 	double	rot_angle;
 }				t_data;
 
+typedef union u_color
+{
+	unsigned char	rgb[4];
+	int				color;
+}			t_color;
+
 typedef struct s_tex
 {
 	void	*wall;
@@ -100,6 +106,8 @@ typedef struct s_cub
 	t_tex		*wall_so;
 	t_tex		*wall_we;
 	t_tex		*wall_ea;
+	t_color		ceilling;
+	t_color		floor;
 }				t_cub;
 
 //		parsing/utils.c
