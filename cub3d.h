@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/18 18:53:15 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/22 13:03:22 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ typedef struct s_cub
 	void		*mlx_p;
 	void		*mlx_w;
 	t_img		img;
-	t_tex		*wall_no;
-	t_tex		*wall_so;
-	t_tex		*wall_we;
-	t_tex		*wall_ea;
+	t_img		wall_no;
+	t_img		wall_so;
+	t_img		wall_we;
+	t_img		wall_ea;
 	t_color		ceilling;
 	t_color		floor;
 }				t_cub;
