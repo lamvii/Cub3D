@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/18 23:19:37 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:37:17 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	setup_img(cub);
 	setup_color(cub->img.endian, cub->ceilling.rgb, cub->data->c);
 	setup_color(cub->img.endian, cub->floor.rgb, cub->data->f);
+	setup_texture(cub);
 	cub->mlx_w = mmlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
 	draw_rays(*cub);
 	draw_mmap(cub);

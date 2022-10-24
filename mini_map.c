@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/20 20:20:14 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:57:21 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,17 +258,22 @@ t_point	vertical_intersection(t_cub cub, double alpha, double *distance)
 	return (vertical);
 }
 
-t_point	find_intersection(t_cub cub, double alpha, double *distance)
+t_point	find_intersection(t_cub cub, double alpha, double *distance, int *flag)
 {
 	t_point	horizontal;
 	t_point	vertical;
 	double	ver_dist;
 	double	hor_dist;
+	
 
 	horizontal = horizontal_intersection(cub, alpha, &hor_dist);
 	vertical = vertical_intersection(cub, alpha, &ver_dist);
 	if (hor_dist <= ver_dist)
+	{
+        *flag = HORI;
 		return (*distance = hor_dist, horizontal);
+	}
+	*flag = VERT;
 	return (*distance = ver_dist, vertical);
 }
 
@@ -307,13 +312,18 @@ void	draw_rays(t_cub cub)
 	double	ray_distance;
 	int		ray_id;
 	double	alpha;
+	int		flag;
 
 	ray_id = 0;
 	while (ray_id < CUBWIDTH)
 	{
 		alpha = fmod(cub.data->rot_angle
 				- cub.fov / 2 + ray_id * cub.rayangle, 2 * M_PI);
-		intersection = find_intersection(cub, alpha, &ray_distance);
+		intersection = find_intersection(cub, alpha, &ray_distance, &flag);
+		if (flag == HORI)
+			cub.texture_offset = intersection.x;
+		else
+			cub.texture_offset = intersection.y;
 		rendring_walls(cub, ray_id, ray_distance);
 		put_line(cub, (t_point){cub.player.y * M_TILE, cub.player.x * M_TILE},
 			(t_point){intersection.y * M_TILE, intersection.x * M_TILE});
