@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
+#    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/19 15:32:55 by ael-idri         ###   ########.fr        #
+#    Updated: 2022/10/24 20:30:04 by rnaamaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
 				parsing/read_map.c parsing/check_playermap.c \
 				mini_map.c moving_player.c\
 				mlx/_mlx.c\
+				tex.c rendering.c \
 				cub3d.c 
 OBJS		=	$(SRCS:.c=.o)
 HEADER		=	cub3d.h ./GNL/get_next_line.h ./libft/libft.h

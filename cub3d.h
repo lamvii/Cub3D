@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/24 19:55:45 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:37:03 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,9 @@ typedef struct s_cub
 	t_img		wall_ea;
 	t_color		ceilling;
 	t_color		floor;
+	int			flag;
 	double		texture_offset;
+	double		wall_hight;
 }				t_cub;
 
 //		parsing/utils.c
@@ -185,6 +187,9 @@ void	mmlx_put_image_to_window(void *mlx_ptr, void *win_ptr,
 			void *img_ptr, int x, int y);
 void	mmlx_destroy_window(void *mlx_ptr, void *img_ptr);
 
-t_point	find_intersection(t_cub cub, double alpha, double *distance, int *flag);
+t_point	find_intersection(t_cub cub, double alpha, double *distance);
 
+void 	setup_texture(t_cub *cub);
+
+void	rendering_texture(t_cub cub, int len , int *i , int ray_id);
 #endif

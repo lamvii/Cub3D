@@ -3,7 +3,6 @@
 
 void    no_texture(t_cub *cub)
 {
-	int i;
 	int height;
 	int width;
 	
@@ -20,7 +19,6 @@ void    no_texture(t_cub *cub)
 
 void    so_texture(t_cub *cub)
 {
-	int i;
 	int height;
 	int width;
 	
@@ -37,7 +35,6 @@ void    so_texture(t_cub *cub)
 
 void    we_texture(t_cub *cub)
 {
-	int i;
 	int height;
 	int width;
 	
@@ -54,7 +51,6 @@ void    we_texture(t_cub *cub)
 
 void    ea_texture(t_cub *cub)
 {
-	int i;
 	int height;
 	int width;
 	
@@ -71,8 +67,8 @@ void    ea_texture(t_cub *cub)
 
 void setup_texture(t_cub *cub)
 {
-	ea_texture(cub);
-	so_texture(cub);
-    we_texture(cub);
+	// ea_texture(cub);
+	// so_texture(cub);
+    // we_texture(cub);
 	no_texture(cub);
 }
