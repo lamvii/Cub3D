@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/24 21:05:56 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:21:08 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,8 +294,33 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 	while (++i <= skyhight)
 		img_pixel_put(cub.img, ray_id, i, cub.ceilling.color);
 	i = CUBHIGHT / 2 - wall_hight / 2;
+	if (i < 0)
+		i = 0;
 	len = CUBHIGHT / 2 + wall_hight / 2;
-	rendering_texture(cub, len, &i, ray_id);
+	double	step;
+	double	y;
+	double offset_y;
+
+	
+	step = cub.wall_no.height / cub.wall_hight;
+	while (i < len)
+	{
+		y = i + cub.wall_hight / 2 - CUBHIGHT / 2;
+		// d= fmod(data->alpha, 2 * M_PI);
+		offset_y = y * step;
+		img_pixel_put(cub.img, ray_id, i, cub.wall_no.addr[(int)(cub.texture_offset * cub.wall_no.width + offset_y * cub.wall_no.width)]);
+		i++;
+	}
+	
+	// cub.texture_offset = cub.texture_offset - floor(cub.texture_offset);
+	// printf("width = %d, hight= %d, offset= %f step =%f\n", cub.wall_no.width,cub.wall_no.height,cub.texture_offset, step);
+	// while (i < len)
+	// {
+	// 	y = i * step;
+	// 	img_pixel_put(cub.img, ray_id, i, cub.wall_no.addr[(int)cub.texture_offset * cub.wall_no.width + (int)y * cub.wall_no.width]);
+	// 	i++;
+	// }
+	// rendering_texture(cub, len, &i, ray_id);
 	while (i < CUBHIGHT)
 	{
 		img_pixel_put(cub.img, ray_id, i, cub.floor.color);

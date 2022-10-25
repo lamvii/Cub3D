@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/24 19:37:17 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:00:16 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	img_pixel_put(t_img img, int x, int y, int color)
 {
 	if (x > CUBWIDTH || y > CUBHIGHT || x < 0 || y < 0)
 		return ;
-		img.addr[x + (y * CUBWIDTH)] = color;
+	img.addr[x + (y * CUBWIDTH)] = color;
 }
 
 void	setup_player(t_cub *cub)
