@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
+#    By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/24 20:30:04 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/10/25 20:24:18 by ael-idri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	 	=	cub3d
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror 
 RM			=	rm -rf
 SRCS	 	=	GNL/get_next_line.c	GNL/get_next_line_utils.c \
 				parsing/utils.c parsing/utils1.c parsing/utils2.c \

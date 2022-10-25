@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/25 15:21:08 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:47:41 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,22 +258,21 @@ t_point	vertical_intersection(t_cub cub, double alpha, double *distance)
 	return (vertical);
 }
 
-t_point	find_intersection(t_cub cub, double alpha, double *distance)
+t_point	find_intersection(t_cub *cub, double alpha, double *distance)
 {
 	t_point	horizontal;
 	t_point	vertical;
 	double	ver_dist;
 	double	hor_dist;
-	
 
-	horizontal = horizontal_intersection(cub, alpha, &hor_dist);
-	vertical = vertical_intersection(cub, alpha, &ver_dist);
+	horizontal = horizontal_intersection(*cub, alpha, &hor_dist);
+	vertical = vertical_intersection(*cub, alpha, &ver_dist);
 	if (hor_dist <= ver_dist)
 	{
-        cub.flag = HORI;
+        cub->flag = HORI;
 		return (*distance = hor_dist, horizontal);
 	}
-	cub.flag = VERT;
+	cub->flag = VERT;
 	return (*distance = ver_dist, vertical);
 }
 
@@ -291,32 +290,42 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 		wall_hight = CUBHIGHT;
 	skyhight = (CUBHIGHT - wall_hight) / 2;
 	i = -1;
-	while (++i <= skyhight)
-		img_pixel_put(cub.img, ray_id, i, cub.ceilling.color);
+	// while (++i <= skyhight)
+	// 	img_pixel_put(cub.img, ray_id, i, cub.ceilling.color);
 	i = CUBHIGHT / 2 - wall_hight / 2;
 	if (i < 0)
 		i = 0;
 	len = CUBHIGHT / 2 + wall_hight / 2;
-	double	step;
-	double	y;
-	double offset_y;
 
-	
+
+
+	double	step;
+	int		pos;
+	double offset_y;
+	printf("wallhight= %f\n",cub.wall_hight);
 	step = cub.wall_no.height / cub.wall_hight;
+	offset_y = (i - CUBHIGHT / 2 + cub.wall_hight / 2) * step;
 	while (i < len)
 	{
-		y = i + cub.wall_hight / 2 - CUBHIGHT / 2;
-		// d= fmod(data->alpha, 2 * M_PI);
-		offset_y = y * step;
-		img_pixel_put(cub.img, ray_id, i, cub.wall_no.addr[(int)(cub.texture_offset * cub.wall_no.width + offset_y * cub.wall_no.width)]);
+		// offset_y = (i - CUBHIGHT / 2 + wall_hight / 2) * step;
+		// printf("width = %d hight= %d wallhight = %d offsety = %f step= %f pos = %d\n", cub.wall_no.width, cub.wall_no.height, wall_hight, offset_y, step, (int)(cub.texture_offset * cub.wall_no.width + offset_y * cub.wall_no.width));
+		// y = i + cub.wall_hight / 2 - CUBHIGHT / 2;
+		// d = fmod(data->alpha, 2 * M_PI);
+		// if ((int)(cub.texture_offset * cub.wall_no.width + offset_y * cub.wall_no.width) < cub.wall_no.width * cub.wall_no.height)
+		pos = cub.wall_no.addr[(int)(cub.texture_offset * cub.wall_no.width) + (int)(offset_y * cub.wall_no.width)];
+		// else
+			// pos = 0x0000FF;
+		img_pixel_put(cub.img, ray_id, i, pos);
+		offset_y += step;
+		// y +=step;
 		i++;
 	}
-	
+
 	// cub.texture_offset = cub.texture_offset - floor(cub.texture_offset);
 	// printf("width = %d, hight= %d, offset= %f step =%f\n", cub.wall_no.width,cub.wall_no.height,cub.texture_offset, step);
 	// while (i < len)
 	// {
-	// 	y = i * step;
+	// 	y += step;
 	// 	img_pixel_put(cub.img, ray_id, i, cub.wall_no.addr[(int)cub.texture_offset * cub.wall_no.width + (int)y * cub.wall_no.width]);
 	// 	i++;
 	// }
@@ -340,12 +349,14 @@ void	draw_rays(t_cub cub)
 	{
 		alpha = fmod(cub.data->rot_angle
 				- cub.fov / 2 + ray_id * cub.rayangle, 2 * M_PI);
-		intersection = find_intersection(cub, alpha, &ray_distance);
+		intersection = find_intersection(&cub, alpha, &ray_distance);
 		if (cub.flag == HORI)
 			cub.texture_offset = fmod(intersection.x, 1);
-		else
+		else if (cub.flag == VERT)
 			cub.texture_offset = fmod(intersection.y, 1);
-		rendring_walls(cub, ray_id, ray_distance);
+		printf ("offset  x=%f\n", cub.texture_offset);
+		// printf ("int.x=%f /int.y=%f fleag= %d\n", intersection.x, intersection.y, cub.flag);
+		// rendring_walls(cub, ray_id, ray_distance);
 		put_line(cub, (t_point){cub.player.y * M_TILE, cub.player.x * M_TILE},
 			(t_point){intersection.y * M_TILE, intersection.x * M_TILE});
 		ray_id++;

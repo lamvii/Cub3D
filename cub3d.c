@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/25 11:00:16 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:45:47 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	img_pixel_put(t_img img, int x, int y, int color)
 {
 	if (x > CUBWIDTH || y > CUBHIGHT || x < 0 || y < 0)
 		return ;
-	img.addr[x + (y * CUBWIDTH)] = color;
+		img.addr[x + (y * CUBWIDTH)] = color;
 }
 
 void	setup_player(t_cub *cub)
@@ -67,7 +67,7 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	setup_texture(cub);
 	cub->mlx_w = mmlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
 	draw_rays(*cub);
-	draw_mmap(cub);
+	// draw_mmap(cub);
 	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }
 

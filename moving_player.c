@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/17 15:45:33 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:01:50 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	move_left(t_cub *cub)
 	t_point	intersection;
 	double	ray_distance;
 
-	intersection = find_intersection(*cub,
+	intersection = find_intersection(cub,
 			fmod(-M_PI_2 + cub->data->rot_angle, 2 * M_PI), &ray_distance);
 	if (cub->mstep < ray_distance)
 	{
@@ -37,7 +37,7 @@ void	move_right(t_cub *cub)
 	t_point	intersection;
 	double	ray_distance;
 
-	intersection = find_intersection(*cub,
+	intersection = find_intersection(cub,
 			fmod(M_PI_2 + cub->data->rot_angle, 2 * M_PI), &ray_distance);
 	if (cub->mstep < ray_distance)
 	{
@@ -57,7 +57,7 @@ void	move_forward(t_cub *cub)
 	t_point	intersection;
 	double	ray_distance;
 
-	intersection = find_intersection(*cub,
+	intersection = find_intersection(cub,
 			fmod(cub->data->rot_angle, 2 * M_PI), &ray_distance);
 	if (cub->mstep < ray_distance)
 	{
@@ -77,7 +77,7 @@ void	move_back(t_cub *cub)
 	t_point	intersection;
 	double	ray_distance;
 
-	intersection = find_intersection(*cub,
+	intersection = find_intersection(cub,
 			fmod(cub->data->rot_angle - M_PI, 2 * M_PI), &ray_distance);
 	if (cub->mstep < ray_distance)
 	{

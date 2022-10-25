@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:58:30 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/05 18:15:32 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:16:20 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	mmlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x
 		ft_putstr_fd("Error\n",2);
 		exit(1);
 	}
-	mlx_put_image_to_window(mlx_ptr,win_ptr,img_ptr,x,y);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, x, y);
 }
 
 void	mmlx_destroy_window(void *mlx_ptr,void *img_ptr)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _mlx.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:26:45 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/05 18:15:46 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:42:07 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,4 @@ void	mlx_update_image(t_cub *cub)
 	mlx_destroy_image(cub->mlx_p, cub->img.img_ptr);
 	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
 	cub->img.addr = (int *)mmlx_get_data_addr(cub);
-
 }
