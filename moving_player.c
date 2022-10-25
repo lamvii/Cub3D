@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/25 17:01:50 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/25 22:08:16 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	player_move(t_cub *cub, int keycode)
 	mlx_update_image(cub);
 	draw_rays(*cub);
 	draw_mmap(cub);
-	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img->img_ptr, 0, 0);
 }
 
 int	key_hook(int keycode, void *pram)

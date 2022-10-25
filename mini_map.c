@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/25 21:47:41 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/25 22:12:33 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_ractangle(t_cub *cub, t_point p, int size, int color)
 		p.x = j;
 		while (p.x <= j + size)
 		{
-			img_pixel_put(cub->img, p.x, p.y, color);
+			img_pixel_put(*cub->img, p.x, p.y, color);
 			p.x = p.x + 1;
 		}
 		p.y = p.y + 1;
@@ -69,7 +69,7 @@ void	put_line(t_cub cub, t_point player, t_point end)
 	i = 1;
 	while (i <= steps)
 	{
-		img_pixel_put(cub.img, round(var.x), round(var.y), 0x0000FF);
+		img_pixel_put(*cub.img, round(var.x), round(var.y), 0x0000FF);
 		var.x += dx;
 		var.y += dy;
 		i++;
@@ -303,7 +303,7 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 	int		pos;
 	double offset_y;
 	printf("wallhight= %f\n",cub.wall_hight);
-	step = cub.wall_no.height / cub.wall_hight;
+	step = cub.wall_no->height / cub.wall_hight;
 	offset_y = (i - CUBHIGHT / 2 + cub.wall_hight / 2) * step;
 	while (i < len)
 	{
@@ -312,10 +312,10 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 		// y = i + cub.wall_hight / 2 - CUBHIGHT / 2;
 		// d = fmod(data->alpha, 2 * M_PI);
 		// if ((int)(cub.texture_offset * cub.wall_no.width + offset_y * cub.wall_no.width) < cub.wall_no.width * cub.wall_no.height)
-		pos = cub.wall_no.addr[(int)(cub.texture_offset * cub.wall_no.width) + (int)(offset_y * cub.wall_no.width)];
+		pos = cub.wall_no->addr[(int)(cub.texture_offset * cub.wall_no->width) + (int)(offset_y * cub.wall_no->width)];
 		// else
 			// pos = 0x0000FF;
-		img_pixel_put(cub.img, ray_id, i, pos);
+		img_pixel_put(*cub.img, ray_id, i, 0x0000FF);
 		offset_y += step;
 		// y +=step;
 		i++;
@@ -332,7 +332,7 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 	// rendering_texture(cub, len, &i, ray_id);
 	while (i < CUBHIGHT)
 	{
-		img_pixel_put(cub.img, ray_id, i, cub.floor.color);
+		img_pixel_put(*cub.img, ray_id, i, cub.floor.color);
 		i++;
 	}
 }
@@ -356,7 +356,7 @@ void	draw_rays(t_cub cub)
 			cub.texture_offset = fmod(intersection.y, 1);
 		printf ("offset  x=%f\n", cub.texture_offset);
 		// printf ("int.x=%f /int.y=%f fleag= %d\n", intersection.x, intersection.y, cub.flag);
-		// rendring_walls(cub, ray_id, ray_distance);
+		rendring_walls(cub, ray_id, ray_distance);
 		put_line(cub, (t_point){cub.player.y * M_TILE, cub.player.x * M_TILE},
 			(t_point){intersection.y * M_TILE, intersection.x * M_TILE});
 		ray_id++;

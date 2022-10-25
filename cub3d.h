@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/25 17:00:26 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/25 22:05:09 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ typedef struct s_cub
 	double		fov;
 	void		*mlx_p;
 	void		*mlx_w;
-	t_img		img;
-	t_img		wall_no;
-	t_img		wall_so;
-	t_img		wall_we;
-	t_img		wall_ea;
+	t_img		*img;
+	t_img		*wall_no;
+	t_img		*wall_so;
+	t_img		*wall_we;
+	t_img		*wall_ea;
 	t_color		ceilling;
 	t_color		floor;
 	int			flag;

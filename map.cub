@@ -1,7 +1,7 @@
 NO text/no.xpm
 
 
-SO ./path_to_the_south_texture.xpm
+SO text/na.xpm
 WE ./path_to_the_west_texture.xpm    
 EA ./path_to_the_east_texture.xpm
 
