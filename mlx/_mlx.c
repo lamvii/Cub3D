@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:26:45 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/25 22:09:11 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/27 10:07:53 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	*mmlx_get_data_addr( t_cub *cub)
 {
 	int	*img_addr;
 
-	img_addr = (int *) mlx_get_data_addr(cub->img->img_ptr,
-			&cub->img->bpp, &cub->img->line_len, &cub->img->endian);
+	img_addr = (int *) mlx_get_data_addr(cub->img.img_ptr,
+			&cub->img.bpp, &cub->img.line_len, &cub->img.endian);
 	if (!img_addr)
 	{
 		ft_putstr_fd("Error :mlx error\n", 2);
@@ -67,7 +67,7 @@ int	*mmlx_get_data_addr( t_cub *cub)
 
 void	mlx_update_image(t_cub *cub)
 {
-	mlx_destroy_image(cub->mlx_p, cub->img->img_ptr);
-	cub->img->img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
-	cub->img->addr = (int *)mmlx_get_data_addr(cub);
+	mlx_destroy_image(cub->mlx_p, cub->img.img_ptr);
+	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
+	cub->img.addr = (int *)mmlx_get_data_addr(cub);
 }

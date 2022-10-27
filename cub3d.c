@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/25 22:16:32 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:01:43 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ void	setup_player(t_cub *cub)
 
 void	setup_img(t_cub *cub)
 {
-	cub->img->img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
-	cub->img->addr = mmlx_get_data_addr(cub);
+	puts("img");
+	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
+	puts("img");
+	cub->img.addr = mmlx_get_data_addr(cub);
+	puts("img");
 }
 
 void	setup_color(int endian, unsigned char rgb[4], int color[4])
@@ -61,14 +64,19 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	cub->rayangle = cub->fov / CUBWIDTH;
 	cub->dist_projection_plane = (CUBWIDTH / 2) / tan(cub->fov / 2);
 	setup_player(cub);
+	// puts("hh");
 	setup_img(cub);
-	setup_color(cub->img->endian, cub->ceilling.rgb, cub->data->c);
-	setup_color(cub->img->endian, cub->floor.rgb, cub->data->f);
+	// puts("hh");
+	setup_color(cub->img.endian, cub->ceilling.rgb, cub->data->c);
+	setup_color(cub->img.endian, cub->floor.rgb, cub->data->f);
 	cub->mlx_w = mmlx_new_window(cub->mlx_p, CUBWIDTH, CUBHIGHT, "Cube3D");
-	// setup_texture(cub);
+	// puts("hh");
+	setup_texture(cub);
 	draw_rays(*cub);
+	// puts("hh");
 	draw_mmap(cub);
-	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img->img_ptr, 0, 0);
+	// puts("hh");
+	mlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
 }
 
 int	main(int ac, char **av)
