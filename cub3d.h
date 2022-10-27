@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/27 14:34:10 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:38:35 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,5 +191,5 @@ t_point	find_intersection(t_cub *cub, double alpha, double *distance);
 
 void 	setup_texture(t_cub *cub);
 
-void	rendering_texture(t_cub cub, int len , int *i , int ray_id);
+void	rendering_texture(t_cub cub, int len, int ray_id, int *i);
 #endif
