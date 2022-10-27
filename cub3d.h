@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/27 12:55:30 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:34:10 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 
 # define M_TILE 10
 # define CUBWIDTH 1000
-# define CUBHIGHT 1000
+# define CUBHIGHT 700
 # define CUB_TILE 1000
 
 typedef struct s_data

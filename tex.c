@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:25:13 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/27 09:41:19 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:20:39 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void    no_texture(t_cub *cub)
 {
 	cub->wall_no.img_ptr = mlx_xpm_file_to_image(cub->mlx_p, cub->data->no,
-		&cub->wall_no.height, &cub->wall_no.width);
+		&cub->wall_no.width, &cub->wall_no.height);
 	cub->wall_so.img_ptr = mlx_xpm_file_to_image(cub->mlx_p, cub->data->so,
 		&cub->wall_so.height, &cub->wall_so.width);
 	if (!cub->wall_no.img_ptr)

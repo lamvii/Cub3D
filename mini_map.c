@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 19:19:43 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/27 12:54:54 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:29:40 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,7 +307,7 @@ void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 	while (i < len)
 	{
 		offset_y = (i - CUBHIGHT / 2 + cub.wall_hight / 2) * step;
-		pos = cub.wall_no.addr[(int)(cub.texture_offset * cub.wall_no.width) + (int)(offset_y * cub.wall_no.width)];
+		pos = cub.wall_no.addr[(int)(cub.texture_offset * cub.wall_no.width) + (int)offset_y * cub.wall_no.width];
 		img_pixel_put(cub.img, ray_id, i, pos);
 		i++;
 	}
@@ -334,10 +334,16 @@ void	draw_rays(t_cub cub)
 			alpha = alpha + 2 * M_PI;
 		intersection = find_intersection(&cub, alpha, &ray_distance);
 		if (cub.flag == HORI)
+		{
 			cub.texture_offset = intersection.x;
-		else if (cub.flag == VERT)
+			puts("HORZ");
+		}
+		else
+		{
 			cub.texture_offset = intersection.y;
-		// printf ("offset  x=%d inter.x = %f inter.y = %f\n", cub.texture_offset, intersection.x, intersection.y);
+			puts("VERT");
+		}
+		// printf ("offset  x=%F inter.x = %f inter.y = %f\n", cub.texture_offset, intersection.x, intersection.y);
 		// printf ("int.x=%f /int.y=%f fleag= %d\n", intersection.x, intersection.y, cub.flag);
 		// rendring_walls(cub, ray_id, ray_distance);
 
@@ -368,11 +374,12 @@ void	draw_rays(t_cub cub)
 	int		pos;
 	double offset_y;
 	step = (double)cub.wall_no.height / cub.wall_hight;
-	cub.texture_offset = cub.texture_offset - floor(cub.texture_offset);
+	cub.texture_offset = (cub.texture_offset - floor(cub.texture_offset)) * cub.wall_no.width;
 	while (i < len)
 	{
-		offset_y = (i - CUBHIGHT / 2 + cub.wall_hight / 2) * step;
-		pos = cub.wall_no.addr[(int)(cub.texture_offset * cub.wall_no.width) + (int)(offset_y * cub.wall_no.width)];
+		offset_y = (double)(i - CUBHIGHT / 2 + cub.wall_hight / 2) * step;
+		pos = cub.wall_no.addr[(int)(cub.texture_offset) + (int)offset_y * cub.wall_no.width];
+		
 		img_pixel_put(cub.img, ray_id, i, pos);
 		i++;
 	}
