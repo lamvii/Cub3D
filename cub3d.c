@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/27 13:01:43 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:34:46 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ void	setup_player(t_cub *cub)
 
 void	setup_img(t_cub *cub)
 {
-	puts("img");
 	cub->img.img_ptr = mmlx_new_image(cub->mlx_p, CUBWIDTH, CUBWIDTH);
-	puts("img");
 	cub->img.addr = mmlx_get_data_addr(cub);
-	puts("img");
 }
 
 void	setup_color(int endian, unsigned char rgb[4], int color[4])
