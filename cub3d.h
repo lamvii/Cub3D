@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/27 15:38:35 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:05:32 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@
 
 # define M_TILE 10
 # define CUBWIDTH 1000
-# define CUBHIGHT 700
-# define CUB_TILE 1000
+# define CUBHIGHT 1000
+# define CUB_TILE 10
 
 typedef struct s_data
 {
@@ -98,8 +98,8 @@ typedef struct s_cub
 {
 	t_data		*data;
 	t_point		player;
-	double		mstep; /*move_step */
-	double		rstep; /*rotation_step*/
+	double		mstep;
+	double		rstep;
 	double		rayangle;
 	double		dist_projection_plane;
 	double		fov;
@@ -162,17 +162,51 @@ char	*str_refine(char *str, int width);
 void	init_data(t_data *data);
 bool	check_map(char *str, t_data *data);
 
+//		setup_texture.c
+void	setup_texture(t_cub *cub);
+void	ea_texture(t_cub *cub);
+void	we_texture(t_cub *cub);
+void	so_texture(t_cub *cub);
+void	no_texture(t_cub *cub);
+
+//		setup_cub.c
+void	setup_cub(t_cub	*cub, t_data *data);
+void	setup_color(int endian, unsigned char rgb[4], int color[4]);
+void	setup_img(t_cub *cub);
+void	setup_player(t_cub *cub);
+
 //		mini_map.c
 void	draw_mmap(t_cub *cub);
-void	bresenhams_line(t_cub *cub, t_point player, t_point end);
+void	put_line(t_cub cub, t_point player, t_point end);
 void	draw_ractangle(t_cub *cub, t_point p, int size, int color);
-void	draw_rays(t_cub cub);
+void	displacement(t_cub cub, double *pos, char flag);
 
-//		image_handling.c
-void	img_pixel_put(t_img img, int x, int y, int color);
+//		intersection_vert.c
+t_point	find_intersection(t_cub *cub, double alpha, double *distance);
+t_point	vertical_intersection(t_cub cub, double alpha, double *distance);
+t_point	vertical_intersection_left(t_cub cub, double alpha);
+t_point	vertical_intersection_right(t_cub cub, double alpha);
+
+//		intersection_hori.c
+t_point	horizontal_intersection(t_cub cub, double alpha, double *distance);
+t_point	horizontal_intersection_down(t_cub cub, double alpha);
+t_point	horizontal_intersection_up(t_cub cub, double alpha);
+bool	is_outside_map(int i, int j, int hight, int width);
+
+//		map.c
+void	draw_map(t_cub cub);
+void	rendring_walls(t_cub cub, int ray_id, double ray_distance);
+void	draw_ray(t_cub cub, t_point intersection);
 
 //		moving_player.c
-int		key_hook(int keycode, void *pram);
+void	player_move(t_cub *cub, int keycode);
+void	move_back(t_cub *cub);
+void	move_forward(t_cub *cub);
+void	move_right(t_cub *cub);
+void	move_left(t_cub *cub);
+
+//		cub3d.c
+int		exit_cub(void	*data);
 
 //		mlx/_mlx.c
 void	*mmlx_init(void);
@@ -181,15 +215,13 @@ void	*mmlx_new_image(void *mlx_ptr, int size_x, int size_y);
 void	*mmlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title);
 void	mlx_update_image(t_cub *cub);
 
-//mlx/mlx1.c
+//		mlx/mlx1.c
 void	mmlx_destroy_image(void *mlx_ptr, void *img_ptr);
 void	mmlx_put_image_to_window(void *mlx_ptr, void *win_ptr,
 			void *img_ptr, int x, int y);
 void	mmlx_destroy_window(void *mlx_ptr, void *img_ptr);
+void	img_pixel_put(t_img img, int x, int y, int color);
 
-t_point	find_intersection(t_cub *cub, double alpha, double *distance);
-
-void 	setup_texture(t_cub *cub);
-
+//		redering_texture.c
 void	rendering_texture(t_cub cub, int len, int ray_id, int *i);
 #endif
