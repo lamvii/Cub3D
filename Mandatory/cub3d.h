@@ -6,7 +6,7 @@
 /*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/28 16:05:32 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:41:30 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ void	mlx_update_image(t_cub *cub);
 //		mlx/mlx1.c
 void	mmlx_destroy_image(void *mlx_ptr, void *img_ptr);
 void	mmlx_put_image_to_window(void *mlx_ptr, void *win_ptr,
-			void *img_ptr, int x, int y);
+			void *img_ptr, t_point p);
 void	mmlx_destroy_window(void *mlx_ptr, void *img_ptr);
 void	img_pixel_put(t_img img, int x, int y, int color);
 

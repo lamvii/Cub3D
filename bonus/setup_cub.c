@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_cub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:22:42 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/30 17:53:48 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:39:54 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	setup_texture(cub);
 	draw_map(*cub);
 	draw_mmap(cub);
-	mmlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
+	mmlx_put_image_to_window(cub->mlx_p, cub->mlx_w,
+		cub->img.img_ptr, (t_point){0, 0});
 }

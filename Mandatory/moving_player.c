@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moving_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:12 by rnaamaou          #+#    #+#             */
-/*   Updated: 2022/10/30 17:48:30 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:41:40 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,6 @@ void	player_move(t_cub *cub, int keycode)
 	mlx_clear_window(cub->mlx_p, cub->mlx_w);
 	mlx_update_image(cub);
 	draw_map(*cub);
-	//draw_mmap(cub);
-	mmlx_put_image_to_window(cub->mlx_p, cub->mlx_w, cub->img.img_ptr, 0, 0);
+	mmlx_put_image_to_window(cub->mlx_p, cub->mlx_w,
+		cub->img.img_ptr, (t_point){0, 0});
 }

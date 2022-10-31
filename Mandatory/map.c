@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:56:07 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/30 17:47:50 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:35:29 by ael-idri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	draw_map(t_cub cub)
 		else
 			cub.texture_offset = intersection.y;
 		rendring_walls(cub, ray_id, ray_distance);
-		//draw_ray(cub, intersection);
 		ray_id++;
 	}
 }
