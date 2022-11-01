@@ -6,7 +6,7 @@
 #    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/11/01 12:02:23 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/11/01 18:50:29 by rnaamaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS	 	=	Mandatory/GNL/get_next_line.c	Mandatory/GNL/get_next_line_utils.c \
 				Mandatory/mini_map.c Mandatory/moving_player.c Mandatory/map.c\
 				Mandatory/setup_cub.c Mandatory/setup_texture.c \
 				Mandatory/mlx/_mlx.c Mandatory/mlx/mlx1.c \
-				Mandatory/rendering_texture.c \
+				Mandatory/rendering_texture.c Mandatory/extra.c\
 				Mandatory/cub3d.c\
 
 SRCS_BONUS	= 	bonus/GNL/get_next_line.c	bonus/GNL/get_next_line_utils.c \
@@ -34,7 +34,7 @@ SRCS_BONUS	= 	bonus/GNL/get_next_line.c	bonus/GNL/get_next_line_utils.c \
 				bonus/mini_map.c bonus/moving_player.c bonus/map.c\
 				bonus/setup_cub.c bonus/setup_texture.c \
 				bonus/mlx/_mlx.c bonus/mlx/mlx1.c \
-				bonus/rendering_texture.c \
+				bonus/rendering_texture.c bonus/extra.c\
 				bonus/cub3d.c\
 
 OBJS		=	$(SRCS:.c=.o)

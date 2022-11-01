@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:22:42 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/11/01 11:54:43 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/11/01 18:42:41 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	setup_player(t_cub *cub)
 {
 	cub->player.x = cub->data->px + 0.5;
 	cub->player.y = cub->data->py + 0.5;
-	cub->rstep = (M_PI / 180) * 2;
+	cub->rstep = (M_PI / 180) * 3;
 	cub->mstep = 0.1;
 	cub->data->map[cub->data->py][cub->data->px] = '0';
 }
@@ -54,8 +54,8 @@ void	setup_cub(t_cub	*cub, t_data *data)
 	cub->dist_projection_plane = (CUBWIDTH / 2) / tan(cub->fov / 2);
 	cub->up = 0;
 	cub->down = 0;
-	cub->left =	 0;
-	cub->ro_left =	 0;
+	cub->left = 0;
+	cub->ro_left = 0;
 	cub->right = 0;
 	cub->ro_right = 0;
 	setup_player(cub);

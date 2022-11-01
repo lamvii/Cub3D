@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/11/01 11:53:54 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/11/01 18:47:38 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,4 +230,10 @@ void	img_pixel_put(t_img img, int x, int y, int color);
 
 //		redering_texture.c
 void	rendering_texture(t_cub cub, int len, int ray_id, int *i);
+
+//		extra.c
+void	frame(t_cub	*cub);
+void	move_c(t_cub *cub, char c);
+int		exit_cub(void	*data);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/11/01 12:01:49 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/11/01 18:41:47 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_cub
 	bool		ro_left;
 	bool		right;
 	bool		ro_right;
+	int			mouse;
 }				t_cub;
 
 //		parsing/utils.c
@@ -202,7 +203,6 @@ bool	is_outside_map(int i, int j, int hight, int width);
 //		map.c
 void	draw_map(t_cub cub);
 void	rendring_walls(t_cub cub, int ray_id, double ray_distance);
-void	draw_ray(t_cub cub, t_point intersection);
 
 //		moving_player.c
 void	player_move(t_cub *cub, int keycode);
@@ -230,4 +230,9 @@ void	img_pixel_put(t_img img, int x, int y, int color);
 
 //		redering_texture.c
 void	rendering_texture(t_cub cub, int len, int ray_id, int *i);
+
+//extra.c
+void	frame(t_cub	*cub);
+void	move_c(t_cub *cub, char c);
+int		exit_cub(void	*data);
 #endif

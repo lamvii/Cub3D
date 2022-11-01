@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/11/01 11:58:53 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/11/01 18:39:22 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,21 @@ int	key_release(int keycode, void *pram)
 	return (0);
 }
 
-int	exit_cub(void	*data)
+static int	ft_mouse(int x, int y, t_cub *cub)
 {
-	t_cub	*cub;
-
-	cub = (t_cub *)data;
-	free__tab(&cub->data->o_map);
-	free__tab(&cub->data->map);
-	free(cub->data->no);
-	free(cub->data->ea);
-	free(cub->data->we);
-	free(cub->data->so);
-	exit(0);
+	if (x >= CUBWIDTH || x <= 0 || y >= CUBHIGHT || y <= 0)
+		return (0);
+	if (x < cub->mouse)
+	{
+		cub->data->rot_angle -= cub->rstep;
+		frame(cub);
+	}
+	if (x > cub->mouse)
+	{
+		cub->data->rot_angle += cub->rstep;
+		frame(cub);
+	}
+	cub->mouse = x;
 	return (0);
 }
 
@@ -75,23 +78,23 @@ int	rendering_frames(void	*data)
 
 	cub = (t_cub *)data;
 	if (cub->left)
-		move_left(cub);
+		move_c(cub, 'l');
 	if (cub->right)
-		 move_right(cub);
+		move_c(cub, 'r');
 	if (cub->up)
-		 move_forward(cub);
+		move_c(cub, 'u');
 	if (cub->down)
-		 move_back(cub);
+		move_c(cub, 'd');
 	if (cub->ro_left)
+	{
 		cub->data->rot_angle -= cub->rstep;
+		frame(cub);
+	}
 	if (cub->ro_right)
+	{
 		cub->data->rot_angle += cub->rstep;
-	mlx_clear_window(cub->mlx_p, cub->mlx_w);
-	mlx_update_image(cub);
-	draw_map(*cub);
-	draw_mmap(cub);
-	mmlx_put_image_to_window(cub->mlx_p, cub->mlx_w,
-		cub->img.img_ptr, (t_point){0, 0});
+		frame(cub);
+	}
 	return (0);
 }
 
@@ -116,6 +119,7 @@ int	main(int ac, char **av)
 	setup_cub(&cub, &data);
 	mlx_hook(cub.mlx_w, 2, 0, key_press, &cub);
 	mlx_hook(cub.mlx_w, 3, 0, key_release, &cub);
+	mlx_hook(cub.mlx_w, 6, 0, ft_mouse, &cub);
 	mlx_hook(cub.mlx_w, 17, 0, exit_cub, &cub);
 	mlx_loop_hook(cub.mlx_p, &rendering_frames, &cub);
 	mlx_loop(&cub.mlx_p);

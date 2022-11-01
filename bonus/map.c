@@ -6,17 +6,11 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:56:07 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/30 17:53:40 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/11/01 18:41:36 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	draw_ray(t_cub cub, t_point intersection)
-{
-	put_line(cub, (t_point){cub.player.y * M_TILE, cub.player.x * M_TILE},
-		(t_point){intersection.y * M_TILE, intersection.x * M_TILE});
-}
 
 void	rendring_walls(t_cub cub, int ray_id, double ray_distance)
 {
@@ -63,7 +57,6 @@ void	draw_map(t_cub cub)
 		else
 			cub.texture_offset = intersection.y;
 		rendring_walls(cub, ray_id, ray_distance);
-		draw_ray(cub, intersection);
 		ray_id++;
 	}
 }
