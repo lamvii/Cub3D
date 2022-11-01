@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/31 22:49:31 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/11/01 12:01:49 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 # define ARROW_R 124
 
 # define M_TILE 10
-# define CUBWIDTH 1000
-# define CUBHIGHT 1000
+# define CUBWIDTH 800
+# define CUBHIGHT 700
 # define CUB_TILE 10
 
 typedef struct s_data
@@ -115,6 +115,12 @@ typedef struct s_cub
 	int			flag;
 	double		texture_offset;
 	double		wall_hight;
+	bool		up;
+	bool		down;
+	bool		left;
+	bool		ro_left;
+	bool		right;
+	bool		ro_right;
 }				t_cub;
 
 //		parsing/utils.c

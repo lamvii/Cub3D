@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:16 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/31 16:41:30 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:53:54 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,12 @@ typedef struct s_cub
 	int			flag;
 	double		texture_offset;
 	double		wall_hight;
+	bool		up;
+	bool		down;
+	bool		left;
+	bool		ro_left;
+	bool		right;
+	bool		ro_right;
 }				t_cub;
 
 //		parsing/utils.c

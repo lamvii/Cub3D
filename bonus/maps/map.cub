@@ -1,12 +1,12 @@
-NO bonus/text/mona.xpm
-SO bonus/text/perle.xpm
+NO bonus/text/van-Gogh.xpm 
+SO bonus/text/van-Gogh.xpm 
 WE bonus/text/van-Gogh.xpm    
-EA bonus/text/zlij.xpm
+EA bonus/text/van-Gogh.xpm 
 
 
-F 255,218,185    
+F 99,53,44    
 
-C      240,255,255
+C      197,116,19
 
         1111111111111111
         100000100000001

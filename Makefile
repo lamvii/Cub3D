@@ -6,7 +6,7 @@
 #    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/31 19:35:45 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/11/01 12:02:23 by rnaamaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,4 +83,5 @@ fclean		:	clean
 
 re			:	fclean all
 
+re_bonus	:	fclean bonus
 .PHONY		:	all clean fclean re bonus
