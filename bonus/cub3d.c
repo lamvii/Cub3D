@@ -6,7 +6,7 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/28 16:21:43 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/10/31 22:53:59 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ int	main(int ac, char **av)
 	{
 		write (2, "Error invalide arg\n", 20);
 		return (1);
+	}
+	if ((CUBHIGHT > 1800 || CUBHIGHT < 300)
+		|| (CUBWIDTH > 5120 || CUBWIDTH < 300))
+	{
+		ft_putstr_fd("Erorr window size\n", 2);
+		exit (1);
 	}
 	if (!check_map(av[1], &data))
 		return (1);

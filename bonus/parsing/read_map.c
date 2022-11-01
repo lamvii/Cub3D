@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-idri <ael-idri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 21:42:15 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/10/04 17:00:28 by ael-idri         ###   ########.fr       */
+/*   Updated: 2022/10/31 22:53:29 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	**ft_realoc(char **tab, int size)
 
 	i = 0;
 	n_tab = (char **)malloc(sizeof(char *) * size);
+	if (!n_tab)
+		return (NULL);
 	while (i < size - 1)
 	{
 		n_tab[i] = tab[i];
@@ -91,6 +93,8 @@ bool	read_map(char *file, t_data *data)
 			continue ;
 		i++;
 		data->o_map = ft_realoc(data->o_map, i + 1);
+		if (!data->o_map)
+			return (false);
 		data->o_map[i] = line;
 	}
 	return (true);

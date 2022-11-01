@@ -6,14 +6,14 @@
 #    By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 22:41:33 by ael-idri          #+#    #+#              #
-#    Updated: 2022/10/30 21:28:32 by rnaamaou         ###   ########.fr        #
+#    Updated: 2022/10/31 19:35:45 by rnaamaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	 	=	cub3d
-NAME_BONUS	=	cub3d_bonus
+NAME	 	=	cub3D
+NAME_BONUS	=	cub3D_bonus
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -Ofast
+CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -rf
 SRCS	 	=	Mandatory/GNL/get_next_line.c	Mandatory/GNL/get_next_line_utils.c \
 				Mandatory/parsing/utils.c Mandatory/parsing/utils1.c Mandatory/parsing/utils2.c \
