@@ -6,24 +6,11 @@
 /*   By: rnaamaou <rnaamaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:41:18 by ael-idri          #+#    #+#             */
-/*   Updated: 2022/11/01 18:49:54 by rnaamaou         ###   ########.fr       */
+/*   Updated: 2022/11/01 18:54:29 by rnaamaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	key_hook(int keycode, void *pram)
-{
-	t_cub	*cub;
-
-	cub = (t_cub *)pram;
-	if (keycode == ESC)
-		exit_cub(cub);
-	if (keycode == W || keycode == A || keycode == S
-		|| keycode == D || keycode == ARROW_L || keycode == ARROW_R)
-		player_move(cub, keycode);
-	return (0);
-}
 
 int	key_press(int keycode, void *pram)
 {
@@ -93,7 +80,6 @@ int	rendering_frames(void	*data)
 	return (0);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -104,8 +90,8 @@ int	main(int ac, char **av)
 		write (2, "Error invalide arg\n", 20);
 		return (1);
 	}
-	if ((CUBHIGHT > 1800 || CUBHIGHT < 300)
-		|| (CUBWIDTH > 5120 || CUBWIDTH < 300))
+	if ((CUBHIGHT > 1800 || CUBHIGHT < 1)
+		|| (CUBWIDTH > 5120 || CUBWIDTH < 1))
 	{
 		ft_putstr_fd("Erorr window size\n", 2);
 		exit (1);
@@ -113,7 +99,6 @@ int	main(int ac, char **av)
 	if (!check_map(av[1], &data))
 		return (1);
 	setup_cub(&cub, &data);
-	// mlx_hook(cub.mlx_w, 2 , 0, key_hook, &cub);
 	mlx_hook(cub.mlx_w, 2, 0, key_press, &cub);
 	mlx_hook(cub.mlx_w, 3, 0, key_release, &cub);
 	mlx_hook(cub.mlx_w, 17, 0, exit_cub, &cub);
